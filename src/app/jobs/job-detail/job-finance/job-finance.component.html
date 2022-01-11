@@ -8,7 +8,7 @@
     <div class="input-group">
     <span class="input-group-addon" id="basic-addon3">{{appliance.applianceName}}</span>
     <input type="text"[value]='5000' class="form-control" id="basic-url" aria-describedby="basic-addon3">
-  </div>
+    </div>
 </div>
 </div>
 
@@ -16,8 +16,12 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Parts</h3>
+    <button type="button" class=" btn btn-success">Save</button>
   </div>
-  <div class="panel-body" *ngFor="let appliance of appliances">
-    {{appliance.applianceName}}
+  <div class="panel-body" *ngFor="let part of parts">
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon3">{{part.name}}</span>
+      <input type="text"[value]='part.cost' class="form-control" id="basic-url" aria-describedby="basic-addon3">
+      </div>
   </div>
 </div>

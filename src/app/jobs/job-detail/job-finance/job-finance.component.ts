@@ -1,4 +1,5 @@
 import { Component, ViewChild, Input, OnInit } from '@angular/core';
+import { Part } from 'src/app/shared/part.model';
 
 @Component({
   selector:'app-job-finance',
@@ -7,6 +8,7 @@ import { Component, ViewChild, Input, OnInit } from '@angular/core';
 })
 export class JobFinanceComponent implements OnInit{
 @Input() appliances;
+@Input() parts:Part[];
 
 ngOnInit(){
   console.log('finance appliances ', this.appliances);
