@@ -3,6 +3,7 @@
   <li (click)="onSelectTab('picture')" [ngClass]="loadedTab=='picture'? 'active':null"><a>Pictures</a></li>
   <li (click)="onSelectTab('appliances')" [ngClass]="loadedTab=='appliances'? 'active':null"><a>Appliances</a></li>
   <li (click)="onSelectTab('parts')" [ngClass]="loadedTab=='parts'? 'active':null"><a>Parts</a></li>
+  <li (click)="onSelectTab('finance')" [ngClass]="loadedTab=='finance'? 'active':null"><a>Finance</a></li>
   <li><a>Invoice</a></li>
   <li class="pull-right"><div class="row">
     <div class="col-xs-12">
@@ -134,4 +135,12 @@
                   </div>
                 </div>
                   <!-- END APPLIANCES -->
+                  <!-- BEGINNING FINANCE -->
+        <div *ngIf="loadedTab=='finance'">
+        <app-job-finance
+        [appliances]='job.appliances'
+        ></app-job-finance>
+        </div>
+                  <!-- END FINANCE -->
+
 

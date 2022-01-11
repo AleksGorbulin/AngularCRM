@@ -8,6 +8,7 @@ import { PartEditComponent } from './parts-list/part-edit/part-edit.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { JobsListComponent } from './jobs/jobs-list/jobs-list.component';
 import { JobDetailComponent } from './jobs/job-detail/job-detail.component';
+import { JobFinanceComponent } from './jobs/job-detail/job-finance/job-finance.component';
 import { JobItemComponent } from './jobs/jobs-list/job-item/job-item.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { PartsListService } from './parts-list/parts-list.service';
@@ -29,6 +30,7 @@ import { JobsService } from './jobs/jobs.service';
     JobsComponent,
     JobsListComponent,
     JobDetailComponent,
+    JobFinanceComponent,
     JobItemComponent,
     DropdownDirective,
     JobEditComponent,
