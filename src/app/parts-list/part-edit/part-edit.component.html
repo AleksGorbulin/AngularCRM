@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form (ngSubmit)="submitForm(f)" #f="ngForm">
+      <div class="row">
+        <div class="col-xs-12 form-group">
+          <label for="partNumber">Part Number</label>
+          <input
+          ngModel
+          name="partNumber"
+          required
+           type="text" id="partNumber" class="form-control">
+        </div>
+        <div class="col-sm-12 form-group">
+          <label for="description">Description</label>
+          <input
+          ngModel
+          name="description"
+          required
+          type="text" id="description" class="form-control">
+        </div>
+        <div class="col-xs-12 form-group">
+          <label for="quantity">Quantity</label>
+          <input
+          ngModel
+          name="quantity"
+          type="number"
+          required
+          id="quantity"
+          class="form-control"
+          pattern="^[1-9]+[0-9]*$">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 form-group">
+          <label for="cost">Cost</label>
+          <input
+          ngModel
+          name="cost"
+          type="number"
+          id="cost"
+          class="form-control"
+          pattern="^[1-9]+[0-9]*$"
+          >
+        </div>
+        <div class="col-xs-6 form-group">
+          <label for="retail">Retail</label>
+          <input
+          ngModel
+          name="retail" type="number" id="retail"
+          class="form-control"
+          pattern="^[1-9]+[0-9]*$">
+        </div>
+        <div class="col-xs-12 form-group">
+          <label for="trackNumber">TrackingNumber</label>
+          <input
+          ngModel
+          name="trackNumber" type="text" id="trackNumber" class="form-control">
+        </div>
+        <div class="col-xs-12 form-group">
+          <label for="received">Received</label>
+          <select
+          [ngModel]=false
+          name="received" id="received" class="form-control"
+          required>
+            <!-- <option selected>Choose...</option> -->
+            <option [ngValue]=true >Yes</option>
+            <option [ngValue]=false>No</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button  class="btn btn-success" [disabled]="!f.valid" type="submit">{{editMode ? 'Update':'Add'}}</button>
+          <button *ngIf="editMode" class="btn btn-danger" (click)="onDelete()" type="button">Delete</button>
+          <button class="btn btn-primary" (click)="onClear()" type="button">Clear</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

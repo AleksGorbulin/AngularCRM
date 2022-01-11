@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-xs-6 pl-2">
+    <div class="form-group">
+        <h2>{{job.name}}</h2>
+    </div>
+  </div>
+  <div class="col-xs-6 pull-right">
+    <div class="form-group">
+        <h2 class="pull-right" style="color: red;">{{job.workOrderNumber}}</h2>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="form-group">
+      <label for="phone">Phone</label>
+        <p class="form-control">{{job.phone}}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address</label>
+        <p id="address" class="form-control"><a href="map">{{job.houseNumber}} {{job.street}} {{job.city}}, {{job.zip}}</a></p>
+    </div>
+</div> <!--end left column-->
+<div class="col-lg-6"> <!--beginning right column-->
+
+  <form (ngSubmit)="updateStatus(f)" #f="ngForm" >
+
+
+      <div class="form-group">
+          <label for="job-status">Job Status</label>
+          <select
+          [(ngModel)]="jobStatus"
+          name="jobStatus"
+          id="job-status" class="form-control">
+            <option value="completed">Completed</option>
+            <option value="needParts">Needs parts</option>
+            <option value="partsReceived">Parts Received</option>
+            <option value="needSchedule">Need To Schedule</option>
+          </select>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Private notes</label>
+        <textarea
+        [(ngModel)]="privataNotes"
+        name="privateNotes"
+        #privateNotes="ngModel"
+        type="text"
+        id="description"
+        class="form-control"
+        rows="2">
+        </textarea>
+      </div>
+      <button class="btn btn-success">Update Job Status</button>
+
+
+  </form>
+
+</div><!--end right column-->
+</div><!--end row -->
+
+
+
+<hr>
+<h4>History</h4>
+<ul class="list-group" *ngFor="let jobHistoryItem of job.jobHistory;">
+  <li class="list-group-item">{{ editDate| date:'yyyy-MM-dd'}}---{{jobHistoryItem.jobStatus}} --- {{jobHistoryItem.privateNotes}}</li>
+</ul>
+

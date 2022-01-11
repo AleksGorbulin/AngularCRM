@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button [routerLink]="['new']" class="btn btn-success col-md-6">New Work Order</button>
+  </div>
+  <hr>
+  <div class="col-xs-12">
+    <input type="text" (keyup)="search()" [(ngModel)]="query" class="form-control col-md-6" placeholder="Search">
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <app-job-item
+     *ngFor="let jobEl of jobs; let i=index; "
+     [job]=jobEl
+     [jobId]=i
+     [jobStatus]=jobEl.jobHistory[jobEl.jobHistory.length-1].jobStatus
+     ></app-job-item>
+  </div>
+</div>

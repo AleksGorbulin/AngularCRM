@@ -1,0 +1,137 @@
+<ul class="nav nav-tabs">
+  <li (click)="onSelectTab('info')"  [ngClass]="loadedTab=='info'? 'active':null"><a>Customer</a></li>
+  <li (click)="onSelectTab('picture')" [ngClass]="loadedTab=='picture'? 'active':null"><a>Pictures</a></li>
+  <li (click)="onSelectTab('appliances')" [ngClass]="loadedTab=='appliances'? 'active':null"><a>Appliances</a></li>
+  <li (click)="onSelectTab('parts')" [ngClass]="loadedTab=='parts'? 'active':null"><a>Parts</a></li>
+  <li><a>Invoice</a></li>
+  <li class="pull-right"><div class="row">
+    <div class="col-xs-12">
+      <div appDropdown class="btn-group">
+        <button type="button"
+        style="margin:10px 0;"
+        class="btn btn-primary dropdown-toggle">
+        Manage Work order
+        <span class="caret"></span>
+      </button>
+      <ul  class="dropdown-menu">
+        <li><a (click)="addParts(job.parts)" style="cursor: pointer;">To Parts list</a></li>
+        <li><a [routerLink]="['edit']">Edit Work order</a></li>
+        <li><a href="#">Delete Work order</a></li>
+      </ul>
+      </div>
+    </div>
+  </div></li>
+</ul>
+<!-- IMAGES -->
+<div
+  class="row"
+  *ngIf="loadedTab=='picture'" >
+    <div class="col-xs-12">
+    <a *ngFor="let image of job.images">
+      <img [src]="image.imagePath" alt="{{job.name}}" style="width: 200px; " class="img-fluid img-thumbnail">
+    </a>
+    </div>
+  </div>
+<!-- END IMAGES -->
+  <div
+   class="row"
+   *ngIf="loadedTab=='parts'">
+    <div class="col-xs-12">
+     <ul class="list-group">
+       <li class="list-group-item"
+       *ngFor="let part of job.parts"
+       >{{part.number}} - {{part.name}} - {{part.quantity}}</li>
+     </ul>
+    </div>
+  </div>
+        <!-- CUSTOMER INFO -->
+        <div  *ngIf="loadedTab == 'info'">
+          <app-customer-info [currentJob]="job"></app-customer-info>
+          <!-- <div class="row">
+            <div class="col-xs-6">
+              <div class="form-group">
+                  <h2>{{job.name}}</h2>
+              </div>
+            </div>
+            <div class="col-xs-6 pull-right">
+              <div class="form-group">
+                  <h2 style="color: red;">{{job.workOrderNumber}}</h2>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="form-group">
+                  <p>Phone: {{job.phone}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="form-group">
+                  <p> Address: <a href="map">{{job.address[0].houseNumber}} {{job.address[0].street}} {{job.address[0].city}}, {{job.address[0].zip}}</a></p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="row" >
+            <div class="col-xs-12">
+              <div class="form-group">
+                <label for="description">Private notes</label>
+                <textarea
+                type="text"
+                id="description"
+                class="form-control"
+                rows="6">
+                </textarea>
+              </div>
+            </div>
+          </div> -->
+        </div>
+        <!-- END CUSTOMER INFO -->
+                  <!-- APPLIANCES -->
+                  <div *ngIf="loadedTab=='appliances'">
+                    <div *ngFor="let appliance of appliances">
+                    <div class="row" >
+                      <div class="col-xs-12">
+                        <h3>{{appliance.applianceName}}</h3>
+                      </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                      <div class="form-group">
+                        <label for="address">Model #</label>
+                        <input
+                        type="text"
+                        [value]="appliance.model"
+                        id="address"
+                        class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                      <div class="form-group">
+                        <label for="address">Serial #</label>
+                        <input
+                        [value]="appliance.serial"
+                        type="text"
+                        id="address"
+                        class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                      <div class="form-group">
+                        <label for="description">Description</label>
+                          <textarea
+                          class="form-control"
+                          id="description"
+                          [value]="appliance.applianceDescription"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  </div>
+                </div>
+                  <!-- END APPLIANCES -->
+
