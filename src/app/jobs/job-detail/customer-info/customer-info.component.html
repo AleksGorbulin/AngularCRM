@@ -13,13 +13,16 @@
 <div class="row">
   <div class="col-lg-6">
     <div class="form-group">
-      <label for="phone">Phone</label>
+    <div class="input-group">
+      <span class="input-group-addon">Phone</span>
         <p class="form-control">{{job.phone}}</p>
     </div>
-
-    <div class="form-group">
-      <label for="address">Address</label>
+  </div>
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon">Address</span>
         <p id="address" class="form-control"><a href="map">{{job.houseNumber}} {{job.street}} {{job.city}}, {{job.zip}}</a></p>
+    </div>
     </div>
 </div> <!--end left column-->
 <div class="col-lg-6"> <!--beginning right column-->
@@ -28,31 +31,40 @@
 
 
       <div class="form-group">
-          <label for="job-status">Job Status</label>
+        <div class="input-group">
+          <span class="input-group-addon">Job Status</span>
+          <!-- <label for="job-status">Job Status</label> -->
           <select
           [(ngModel)]="jobStatus"
           name="jobStatus"
-          id="job-status" class="form-control">
+          id="job-status"
+          class="form-control">
             <option value="completed">Completed</option>
             <option value="needParts">Needs parts</option>
             <option value="partsReceived">Parts Received</option>
             <option value="needSchedule">Need To Schedule</option>
           </select>
+        </div>
       </div>
 
       <div class="form-group">
-        <label for="description">Private notes</label>
-        <textarea
-        [(ngModel)]="privataNotes"
-        name="privateNotes"
-        #privateNotes="ngModel"
-        type="text"
-        id="description"
-        class="form-control"
-        rows="2">
-        </textarea>
+        <div class="input-group" style="display: flex;">
+          <!-- <label for="description">Private notes</label> -->
+          <textarea
+          [(ngModel)]="privataNotes"
+          name="privateNotes"
+          #privateNotes="ngModel"
+          type="text"
+          id="description"
+          class="form-control"
+          rows="1"
+          style="resize: none;"
+          placeholder="explain status update">
+          </textarea>
+          <span (click)="f.onSubmit()" class=" btn-textarea-submit btn btn-success">Update</span>
+        </div>
       </div>
-      <button class="btn btn-success">Update Job Status</button>
+
 
 
   </form>
