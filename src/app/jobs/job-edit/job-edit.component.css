@@ -6,3 +6,6 @@ textarea.ng-invalid.ng-touched{
   display: flex;
   align-items: center;
 }
+.input-group-addon{
+  min-width: 95px;
+}

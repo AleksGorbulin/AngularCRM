@@ -221,5 +221,7 @@ onDeletePart(index:number){
 onDeleteAppliance(index:number){
   (<FormArray>this.workOrderForm.get('appliances')).removeAt(index);
 }
-
+onCancel(){
+  this.router.navigate(['../'],{relativeTo:this.route});
+}
 }

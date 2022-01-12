@@ -7,101 +7,108 @@
   <div class="pull-right"><button
   [disabled]="!workOrderForm.valid"
   type="submit"  class="btn btn-success">Save</button>
-  <button type="button" class="btn btn-danger">Cancel</button></div>
+  <button (click)="onCancel()" type="button" class="btn btn-danger">Cancel</button></div>
 </ul>
       <!-- CUSTOMER INFO -->
       <div  *ngIf="loadedTab == 'info'">
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-md-6"> <!--left column: customer infor beginning-->
+          <label for="">Customer information</label>
           <div class="form-group">
-            <label for="workOrderNumber">Work Order</label>
-            <input
-            formControlName="workOrderNumber"
-            type="text"
-            id="workOrderNumber"
-            class="form-control">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="form-group">
-            <label for="name">Name</label>
+            <div class="input-group">
+              <span class="input-group-addon">Name</span>
             <input
             formControlName="name"
             type="text"
             id="name"
             class="form-control">
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
           <div class="form-group">
-            <label for="phone">Phone</label>
+            <div class="input-group">
+              <span class="input-group-addon">Phone</span>
             <input
             formControlName="phone"
             type="text"
             id="phone"
             class="form-control">
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-2">
           <div class="form-group">
-            <label for="address">Number </label>
+            <div class="input-group">
+              <span class="input-group-addon">Number</span>
             <input
             formControlName="houseNumber"
             type="text"
             id="address"
             class="form-control">
+            </div>
           </div>
-        </div>
-        <div class="col-xs-4">
           <div class="form-group">
-            <label for="street">Street</label>
+            <div class="input-group">
+              <span class="input-group-addon">Street</span>
             <input
             formControlName="street"
             type="text"
             id="street"
             class="form-control">
+            </div>
           </div>
-        </div>
-        <div class="col-xs-4">
           <div class="form-group">
-            <label for="city">City</label>
+            <div class="input-group">
+              <span class="input-group-addon">City</span>
             <input
             formControlName="city"
             type="text"
             id="city"
             class="form-control">
+            </div>
           </div>
-        </div>
-        <div class="col-xs-2">
           <div class="form-group">
-            <label for="zip">Zip</label>
+            <div class="input-group">
+              <span class="input-group-addon">Zip</span>
             <input
             formControlName="zip"
             type="text"
             id="zip"
             class="form-control">
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
+        </div><!--left column end-->
+        <div class="col-md-6"><!--right column:insurance infor beginning-->
+          <label for="">Insurance Information</label>
           <div class="form-group">
-            <label for="description">Description</label>
+            <div class="input-group">
+              <span class="input-group-addon">Work Order</span>
+            <input
+            formControlName="workOrderNumber"
+            type="text"
+            id="workOrderNumber"
+            class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">Date added</span>
+            <input
+            type="date"
+            id="workOrderNumber"
+            class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">Description</span>
             <textarea
             formControlName="description"
             type="text"
             id="description"
             class="form-control"
-            rows="6">
+            rows="3">
             </textarea>
+            </div>
           </div>
-        </div>
+        </div><!--right column end-->
       </div>
     </div>
     <!-- END CUSTOMER INFO -->
