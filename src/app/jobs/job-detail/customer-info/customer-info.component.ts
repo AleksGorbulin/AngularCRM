@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input, ViewChild } from '@angular/core';
 import { Job } from '../../jobs.model';
 import { NgForm } from '@angular/forms';
 import { JobsService } from '../../jobs.service';
@@ -11,10 +11,12 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class CustomerInfoComponent implements OnInit {
 @Input ("currentJob") job:Job; // getting job object from job-detail
-jobStatus:String="Choose status ";
+@ViewChild('f',{static:false}) f:NgForm;
+jobStatus:String;
 privataNotes:String;
 newJobObject={};
 editDate:Date;
+
 // job route id
 id:number;
   constructor(private jobService:JobsService,private route:ActivatedRoute,) { }
@@ -34,7 +36,8 @@ id:number;
 
   }
   updateStatus(form:NgForm){
-    console.log(form.value);
+    console.log('form value ',form.value);
     this.jobService.addStatusUpdate(this.id,form.value);
+    this.f.resetForm();
   }
 }
