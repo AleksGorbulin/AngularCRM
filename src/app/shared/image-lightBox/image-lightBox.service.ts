@@ -1,12 +1,14 @@
 import { Injectable } from "@angular/core";
-import { Observable, of } from 'rxjs';
+import { Subject } from 'rxjs';
+import { Images } from '../images.model';
 
 @Injectable({providedIn:'root'})
 export class ImageLightBoxService{
   constructor(){}
-  images:[];
-  fetchImages():Observable<any>{
-    return of(this.images)
+  images:Images[]=[];
+  // updateImages = new Subject<Images[]>();
+  fetchImages(){
+   return this.images;
   }
   getImages(newImages){
     this.images=newImages;

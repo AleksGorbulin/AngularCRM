@@ -30,9 +30,13 @@
     <div class="col-xs-12">
     <a *ngFor="let image of job.images" (click)="passToImageLightbox()">
       <img [src]="image.imagePath" alt="{{job.name}}" style="width: 200px; " class="img-fluid img-thumbnail">
+
     </a>
+    <app-image-lightbox
+    [images]="job.images"
+    ></app-image-lightbox>
     </div>
-    <app-image-lightbox></app-image-lightbox>
+
   </div>
 <!-- END IMAGES -->
   <div

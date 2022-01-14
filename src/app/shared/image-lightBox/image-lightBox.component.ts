@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ImageLightBoxService } from './image-lightbox.service';
+import { Images } from '../images.model';
 
 @Component({
   selector: 'app-image-lightbox',
@@ -7,24 +8,30 @@ import { ImageLightBoxService } from './image-lightbox.service';
   styleUrls: ['./image-lightbox.component.css']
 })
 export class ImageLightBoxComponent implements OnInit {
-  images = [];
+ @Input("images") images:Images[]=[];
   slideIndex = 0;
+  subscription;
   constructor(private imageLightBoxService:ImageLightBoxService) { }
 
   ngOnInit(): void {
     this.loadImages();
+    this.openModal();
+    this.showSlides(1);
   }
   loadImages(){
-    this.imageLightBoxService.fetchImages()
-    .subscribe(images=>this.images=images);
+    return this.images;
+//  this.images= this.imageLightBoxService.fetchImages();
   }
   openModal() {
     document.getElementById('imgModal').style.display = "block";
-   } closeModal() {
+   }
+   closeModal() {
     document.getElementById('imgModal').style.display = "none";
-   } plusSlides(n) {
+   }
+   plusSlides(n) {
     this.showSlides(this.slideIndex += n);
-   } currentSlide(n) {
+   }
+   currentSlide(n) {
     this.showSlides(this.slideIndex = n);
    }
    showSlides(slideIndex);
