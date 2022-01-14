@@ -28,10 +28,11 @@
   class="row"
   *ngIf="loadedTab=='picture'" >
     <div class="col-xs-12">
-    <a *ngFor="let image of job.images">
+    <a *ngFor="let image of job.images" (click)="passToImageLightbox()">
       <img [src]="image.imagePath" alt="{{job.name}}" style="width: 200px; " class="img-fluid img-thumbnail">
     </a>
     </div>
+    <app-image-lightbox></app-image-lightbox>
   </div>
 <!-- END IMAGES -->
   <div

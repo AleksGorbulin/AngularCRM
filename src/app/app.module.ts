@@ -18,6 +18,7 @@ import { JobStartComponent } from './jobs/job-start/job-start.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerInfoComponent } from './jobs/job-detail/customer-info/customer-info.component';
 import { JobsService } from './jobs/jobs.service';
+import { ImageLightBoxComponent } from './shared/image-lightBox/image-lightBox.component';
 
 
 
@@ -36,6 +37,7 @@ import { JobsService } from './jobs/jobs.service';
     JobEditComponent,
     JobStartComponent,
     CustomerInfoComponent,
+    ImageLightBoxComponent,
 
 
   ],
