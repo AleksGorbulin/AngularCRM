@@ -45,6 +45,7 @@
   cursor: pointer;
 }.img-slides {
   display: none;
+  text-align:center;
 }
 .img-slides img{
   max-width:90%;
