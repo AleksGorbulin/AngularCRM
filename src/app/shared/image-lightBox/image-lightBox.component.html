@@ -1,6 +1,6 @@
 <div class="image-row">
   <div class="image-column" *ngFor="let image of images; let i = index">
-      <img src="{{image.imagePath}}" (click)="openModal();currentSlide(i+1)" class="hover-shadow cursor">
+      <img src="{{image.imagePath}}" (click)="openModal();currentSlide(i+1)" class="listOfImages hover-shadow cursor">
   </div>
 </div>
 <div id="imgModal" class="slide-modal">
