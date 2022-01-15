@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { ImageLightBoxService } from './image-lightbox.service';
+// import { ImageLightBoxService } from './image-lightbox.service';
 import { Images } from '../images.model';
 
 @Component({
@@ -11,7 +11,7 @@ export class ImageLightBoxComponent implements OnInit {
  @Input("images") images:Images[]=[];
   slideIndex = 0;
   subscription;
-  constructor(private imageLightBoxService:ImageLightBoxService) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.loadImages();

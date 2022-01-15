@@ -5,7 +5,7 @@ import { PartsListService } from 'src/app/parts-list/parts-list.service';
 import { JobsService } from '../jobs.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Appliance } from 'src/app/shared/appliance.model';
-import { ImageLightBoxService } from 'src/app/shared/image-lightBox/image-lightbox.service';
+
 
 @Component({
   selector: 'app-job-detail',
@@ -21,7 +21,7 @@ appliances:Appliance[];
   constructor(private partsListService:PartsListService,
               private jobsService:JobsService,
               private route:ActivatedRoute,
-              private imageLightBox:ImageLightBoxService) { }
+              ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -41,7 +41,5 @@ appliances:Appliance[];
     this.loadedTab = arg;
     console.log('loadedTab', this.loadedTab);
   }
-  passToImageLightbox(){
-    this.imageLightBox.getImages(this.job.images);
-  }
+
 }
