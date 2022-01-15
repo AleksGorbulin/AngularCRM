@@ -15,7 +15,6 @@ export class ImageLightBoxComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadImages();
-    this.openModal();
     this.showSlides(1);
   }
   loadImages(){

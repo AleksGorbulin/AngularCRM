@@ -45,6 +45,8 @@
   cursor: pointer;
 }.img-slides {
   display: none;
+  max-width: 90vw;
+  max-height: 90vh;
 }.cursor {
   cursor: pointer;
 }.prev,
