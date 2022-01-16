@@ -1,7 +1,6 @@
 import { EventEmitter} from '@angular/core';
 import { Job } from './jobs.model';
 import { Part } from '../shared/part.model';
-import { Address } from '../shared/address.model';
 import { Appliance } from '../shared/appliance.model';
 import { Subject } from 'rxjs';
 import { Images } from '../shared/images.model';
@@ -15,11 +14,11 @@ export class JobsService{
 
  private jobs:Job[]=[
     new Job('B0044','John Snow', 'Refrigerator leaks water','619-888-8888','2517','Northside dr','San Diego',92108,
-          [new Images('https://www.mrrooter.com/images/blog/MRR-BlogGraphic-WhyRefrigeratorLeakWater-0718.1807260706440.jpg'),
+          [new Images('https://www.cnet.com/a/img/RPPYpCDQzZi-1Eyg2K4EVBvznaU=/940x0/2015/07/28/59f8ac3c-28ee-4bb3-9ef4-8bfd8e33e2ff/river-kenmore-72484-four-door-refrigerator-product-photos-1.jpg'),
               new Images('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLRh145NsLEoHFBhZCZFwyNhG_J7ppRK2eIw&usqp=CAU'),
               new Images('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLRh145NsLEoHFBhZCZFwyNhG_J7ppRK2eIw&usqp=CAU'),
               new Images('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLRh145NsLEoHFBhZCZFwyNhG_J7ppRK2eIw&usqp=CAU'),
-              new Images('https://www.mrrooter.com/images/blog/MRR-BlogGraphic-WhyRefrigeratorLeakWater-0718.1807260706440.jpg')],
+              new Images('https://www.cnet.com/a/img/RPPYpCDQzZi-1Eyg2K4EVBvznaU=/940x0/2015/07/28/59f8ac3c-28ee-4bb3-9ef4-8bfd8e33e2ff/river-kenmore-72484-four-door-refrigerator-product-photos-1.jpg')],
           [new Part('COD1','12343','compressor',1,10,20,'1ewsdfe3',false),
               new Part('COD2','45432','filter dryer',1,1,2,'1ewsdfe3',false)],
           [new Appliance('Dryer','tnks422342','ekstr3443','display does not work'),
@@ -37,8 +36,6 @@ export class JobsService{
   }
   getJob(id:number){
     const job = this.jobs[id];
-    // const job= this.jobs.find((job)=>job.id===id);
-    console.log('get job ', job);
     return job;
   }
   findJob(query:string){
@@ -73,5 +70,14 @@ export class JobsService{
     this.jobs[index].jobHistory.push(jobHistory);
     this.jobsUpdated.next(this.jobs.slice());
     console.log('from service job array', this.jobs[index].jobHistory);
+  }
+  // delete image
+  deleteImage(jobId,imageId){
+    const imageDeleted = this.jobs[jobId].images.splice(imageId,1);
+    if (imageDeleted){
+      return true;
+    }else{
+      return false;
+    }
   }
 }

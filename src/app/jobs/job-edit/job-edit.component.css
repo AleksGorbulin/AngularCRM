@@ -9,3 +9,20 @@ textarea.ng-invalid.ng-touched{
 .input-group-addon{
   min-width: 95px;
 }
+.position-relative{
+  position: relative;
+}
+.closeBtn{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 4px 4px 0 0 ;
+  opacity: 0.6;
+  transition: all 0.3s;
+
+}
+.closeBtn:hover,
+.closeBtn:focus{
+  opacity: 1;
+}
+

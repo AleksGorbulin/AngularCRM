@@ -22,7 +22,7 @@
   <div class="panel-body" *ngFor="let part of parts">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon3">{{part.name}}</span>
-      <input type="text"[value]='part.cost' class="form-control" id="basic-url" aria-describedby="basic-addon3">
+      <input type="text"[value]='part.retail-part.cost' class="form-control" id="basic-url" aria-describedby="basic-addon3">
       </div>
   </div>
 </div>

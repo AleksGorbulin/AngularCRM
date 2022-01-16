@@ -5,6 +5,7 @@ import { JobsService } from '../jobs.service';
 import { Job } from '../jobs.model';
 import { Address } from 'src/app/shared/address.model';
 import { ThisReceiver } from '@angular/compiler';
+import { rejects } from 'assert';
 
 @Component({
   selector: 'app-job-edit',
@@ -14,7 +15,7 @@ import { ThisReceiver } from '@angular/compiler';
 export class JobEditComponent implements OnInit {
 editMode=false;
 workOrderForm:FormGroup;
-id:number;
+id:number; //job Id
 loadedTab:string="info";
 
   constructor(private route:ActivatedRoute,
@@ -29,6 +30,9 @@ loadedTab:string="info";
         this.initForm();
       }
     );
+    // this.jobService.jobsUpdated.subscribe(
+
+    // )
   }
   private initForm(){
       let workOrderNumber= '';
@@ -190,10 +194,8 @@ loadedTab:string="info";
       // we can pass workOrderForm because fields in the form are the same
       // as jobs.model
       this.jobService.updateJob(this.id,newJob);
-      console.log(this.workOrderForm.value);
     }else{
       this.jobService.addJob(newJob);
-      // console.log('new job with job history', newJob);
     }
     this.editMode=false;
     this.router.navigate(['../'],{relativeTo:this.route});
@@ -220,6 +222,9 @@ onDeletePart(index:number){
 }
 onDeleteAppliance(index:number){
   (<FormArray>this.workOrderForm.get('appliances')).removeAt(index);
+}
+onDeleteImage(index:number){
+  (<FormArray>this.workOrderForm.get('images')).removeAt(index);
 }
 onCancel(){
   this.router.navigate(['../'],{relativeTo:this.route});

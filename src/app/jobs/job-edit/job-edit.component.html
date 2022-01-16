@@ -112,22 +112,23 @@
       </div>
     </div>
     <!-- END CUSTOMER INFO -->
-      <!-- PICTURES -->
+      <!-- IMAGES -->
       <div  *ngIf="loadedTab=='picture'">
       <div class="row" formArrayName='images'>
         <div class="col-sm-6 col-md-4 col-lg-3"
         *ngFor="let image of imagesControls; let i=index;"
         [formGroupName]="i">
-          <a href="" data-lightbox="photos"><img class="img-fluid img-thumbnail" style=" width: 300px; height: auto" [src]="imagePath.value">
-          <div style="top:0; right: 0;"
-           class="btn btn-danger">X</div>
-          </a>
+          <div *ngIf="image" class="position-relative">
+            <a (click)="onDeleteImage(i)"
+            class="btn btn-danger closeBtn">X</a>
+            <img class="img-fluid img-thumbnail"  [src]="imagePath.value">
+          </div>
           <input style="display: none;"
             type="text" name="" id="" formControlName="imagePath" #imagePath>
         </div>
       </div>
     </div>
-    <!-- END PICTURES -->
+    <!-- END IMAGES -->
     <!-- APPLIANCES -->
                       <!-- APPLIANCES -->
     <div *ngIf="loadedTab=='appliances'">
