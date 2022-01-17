@@ -71,13 +71,11 @@ export class JobsService{
     this.jobsUpdated.next(this.jobs.slice());
     console.log('from service job array', this.jobs[index].jobHistory);
   }
-  // delete image
-  deleteImage(jobId,imageId){
-    const imageDeleted = this.jobs[jobId].images.splice(imageId,1);
-    if (imageDeleted){
-      return true;
-    }else{
-      return false;
-    }
+  // add images
+  addImages(index, imageUrl){
+    console.log('imageURl ', imageUrl);
+    this.jobs[index].images.push(new Images(imageUrl));
+    console.log('images added ', this.jobs);
+    this.jobsUpdated.next(this.jobs);
   }
 }

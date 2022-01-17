@@ -28,6 +28,25 @@
   class="row"
   *ngIf="loadedTab=='picture'" >
     <div class="col-xs-12">
+      <form (ngSubmit)="uploadImage(imageUploadForm)" #imageUploadForm="ngForm"
+      class="imageUploadForm">
+      <button type="button" class="btn btn-primary mt-1" (click)="inputFile.click()">Add pictures...</button>
+      <input type="file"
+       name="inputFile"
+       #inputFile
+       ngModel
+      (change)="onSelectFile($event)" style="display: none;">
+      <div style="position: relative;">
+        <img [src]="imageUrl" alt="" class="display-image">
+        <a *ngIf="imageUrl" style="position: absolute;top: 0;right: 0;color: red;">x</a>
+      </div>
+
+      <button type="submit"
+      *ngIf="imageUrl!=null"
+      class="btn btn-success"
+      >Upload</button>
+      </form>
+      <hr>
     <app-image-lightbox
     [images]="job.images"
     ></app-image-lightbox>
@@ -49,46 +68,6 @@
         <!-- CUSTOMER INFO -->
         <div  *ngIf="loadedTab == 'info'">
           <app-customer-info [currentJob]="job"></app-customer-info>
-          <!-- <div class="row">
-            <div class="col-xs-6">
-              <div class="form-group">
-                  <h2>{{job.name}}</h2>
-              </div>
-            </div>
-            <div class="col-xs-6 pull-right">
-              <div class="form-group">
-                  <h2 style="color: red;">{{job.workOrderNumber}}</h2>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="form-group">
-                  <p>Phone: {{job.phone}}</p>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="form-group">
-                  <p> Address: <a href="map">{{job.address[0].houseNumber}} {{job.address[0].street}} {{job.address[0].city}}, {{job.address[0].zip}}</a></p>
-              </div>
-            </div>
-          </div>
-          <div
-            class="row" >
-            <div class="col-xs-12">
-              <div class="form-group">
-                <label for="description">Private notes</label>
-                <textarea
-                type="text"
-                id="description"
-                class="form-control"
-                rows="6">
-                </textarea>
-              </div>
-            </div>
-          </div> -->
         </div>
         <!-- END CUSTOMER INFO -->
                   <!-- APPLIANCES -->
