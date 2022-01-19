@@ -132,6 +132,11 @@
     <!-- APPLIANCES -->
                       <!-- APPLIANCES -->
     <div *ngIf="loadedTab=='appliances'">
+      <button
+      type="button"
+      class="btn btn-success mt-1"
+      (click)="addAppliance()">Add Appliance</button>
+      <hr>
         <div formArrayName="appliances">
            <div *ngFor="let appliance of applianceControls;let i=index;"
            [formGroupName]="i">
@@ -191,11 +196,6 @@
            </div>
           </div>
                       </div>
-                      <hr>
-                      <button
-                      type="button"
-                      class="btn btn-success"
-                      (click)="addAppliance()">Add Appliance</button>
                     </div>
                   </div>
                       <!-- END APPLIANCES -->

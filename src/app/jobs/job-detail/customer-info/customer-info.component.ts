@@ -36,7 +36,6 @@ id:number;
 
   }
   updateStatus(form:NgForm){
-    console.log('form value ',form.value);
     this.jobService.addStatusUpdate(this.id,form.value);
     this.f.resetForm();
   }

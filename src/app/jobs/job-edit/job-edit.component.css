@@ -17,6 +17,7 @@ textarea.ng-invalid.ng-touched{
   top: 0;
   right: 0;
   margin: 4px 4px 0 0 ;
+  border-radius: 50%;
   opacity: 0.6;
   transition: all 0.3s;
 
@@ -24,5 +25,8 @@ textarea.ng-invalid.ng-touched{
 .closeBtn:hover,
 .closeBtn:focus{
   opacity: 1;
+}
+.mt-1{
+  margin-top: 1rem;
 }
 

@@ -61,6 +61,8 @@ imageUrl=null;
     this.jobsService.addImages(this.id,this.imageUrl);
     this.imageUploadForm.resetForm();
     this.imageUrl=null;
-
+  }
+  deselectImage(){
+    this.imageUrl=null;
   }
 }

@@ -30,7 +30,7 @@
     <div class="col-xs-12">
       <form (ngSubmit)="uploadImage(imageUploadForm)" #imageUploadForm="ngForm"
       class="imageUploadForm">
-      <button type="button" class="btn btn-primary mt-1" (click)="inputFile.click()">Add pictures...</button>
+      <button type="button" class="btn btn-primary mt-1" (click)="inputFile.click()">Add picture</button>
       <input type="file"
        name="inputFile"
        #inputFile
@@ -38,13 +38,13 @@
       (change)="onSelectFile($event)" style="display: none;">
       <div style="position: relative;">
         <img [src]="imageUrl" alt="" class="display-image">
-        <a *ngIf="imageUrl" style="position: absolute;top: 0;right: 0;color: red;">x</a>
+        <a *ngIf="imageUrl" (click)="deselectImage()" style="color: red;text-decoration:none; cursor: pointer;">x</a>
       </div>
 
       <button type="submit"
       *ngIf="imageUrl!=null"
       class="btn btn-success"
-      >Upload</button>
+      >Upload picture</button>
       </form>
       <hr>
     <app-image-lightbox

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵɵtrustConstantResourceUrl } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { JobsService } from '../jobs.service';
@@ -166,6 +166,16 @@ loadedTab:string="info";
     )
   }
   addAppliance(){
+    // beginnig trying
+    const applianceFormArray:FormArray= <FormArray>this.workOrderForm.get('appliances');
+    const newApplianceFromGroup =new FormGroup({
+      'applianceName':new FormControl(null, Validators.required),
+      'model':new FormControl(null,Validators.required),
+      'serial': new FormControl(null,Validators.required),
+      'applianceDescription':new FormControl(null, Validators.required)
+    });
+    applianceFormArray.controls.unshift(newApplianceFromGroup);
+    // end trying
     (<FormArray>this.workOrderForm.get('appliances')).push(
       new FormGroup({
         'applianceName':new FormControl(null, Validators.required),

@@ -19,15 +19,15 @@ export class JobsService{
               new Images('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLRh145NsLEoHFBhZCZFwyNhG_J7ppRK2eIw&usqp=CAU'),
               new Images('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLRh145NsLEoHFBhZCZFwyNhG_J7ppRK2eIw&usqp=CAU'),
               new Images('https://www.cnet.com/a/img/RPPYpCDQzZi-1Eyg2K4EVBvznaU=/940x0/2015/07/28/59f8ac3c-28ee-4bb3-9ef4-8bfd8e33e2ff/river-kenmore-72484-four-door-refrigerator-product-photos-1.jpg')],
-          [new Part('COD1','12343','compressor',1,10,20,'1ewsdfe3',false),
-              new Part('COD2','45432','filter dryer',1,1,2,'1ewsdfe3',false)],
+          [new Part('B0044','12343','compressor',1,10,20,'1ewsdfe3',false),
+              new Part('B0044','45432','filter dryer',1,1,2,'1ewsdfe3',false)],
           [new Appliance('Dryer','tnks422342','ekstr3443','display does not work'),
               new Appliance('Washer','N/A','ekstr3443','No problem found')],
           [new JobHistory('jun 12,2002', 'completed','Good job')]),
     new Job('B0045','Maradonna', 'Dryer does not work','619-777-7777','7','Danshenskiy per','Kursk',10750,
           [new Images('https://www.mrrooter.com/images/blog/MRR-BlogGraphic-WhyRefrigeratorLeakWater-0718.1807260706440.jpg')],
-          [new Part('AHS1','9000','igniter',1,10,20,'1ewsdfe3',true),
-              new Part('ASHURION','11111','belt',1,10,20,'1ewsdfe3',false)],
+          [new Part('B0045','9000','igniter',1,10,20,'1ewsdfe3',true),
+              new Part('B0045','11111','belt',1,10,20,'1ewsdfe3',false)],
           [new Appliance('Refrigerator','543344','sdfdf','handle')],
           [new JobHistory('2022-01-05', 'not completed','Good job')])];
 
@@ -38,6 +38,7 @@ export class JobsService{
     const job = this.jobs[id];
     return job;
   }
+
   findJob(query:string){
     const queryString= query.toLowerCase();
     const filteredJobs:Job[]=this.jobs.filter(
@@ -61,21 +62,26 @@ export class JobsService{
     this.jobs[index]=newJob;
     // send subject to update view
     this.jobsUpdated.next(this.jobs.slice());
-    console.log('this.jobs.slice() ',this.jobs.slice());
   }
   // delete Part
   deletePart(index:number){
   }
   addStatusUpdate(index:number, jobHistory:JobHistory){
-    this.jobs[index].jobHistory.push(jobHistory);
+    this.jobs[index].jobHistory.unshift(jobHistory);
     this.jobsUpdated.next(this.jobs.slice());
-    console.log('from service job array', this.jobs[index].jobHistory);
   }
   // add images
   addImages(index, imageUrl){
     console.log('imageURl ', imageUrl);
-    this.jobs[index].images.push(new Images(imageUrl));
-    console.log('images added ', this.jobs);
-    this.jobsUpdated.next(this.jobs);
+    this.jobs[index].images.unshift(new Images(imageUrl));
   }
+    // get the job when switching part.received status
+    getJobByWorkOrder(workOrder:string){
+      const filterJobs:Job[]=this.jobs.filter(
+        (job)=>{
+          return job.workOrderNumber.toLowerCase()===workOrder.toLowerCase();
+        }
+      );
+      return filterJobs;
+    }
 }

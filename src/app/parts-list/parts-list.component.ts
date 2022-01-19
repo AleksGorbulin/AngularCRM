@@ -28,7 +28,8 @@ export class PartsListComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     this.subscription.unsubscribe();
   }
-  changePartStatus(index){
+  changePartStatus(index,jobId){
     this.parts[index].received= !this.parts[index].received;
+    this.partsListService.checkIfAllPartsReceived(jobId);
   }
 }

@@ -24,14 +24,10 @@ resetCounter() {
   this.counter = 0;
 }
   ngOnChanges(changes:SimpleChanges):void{
-    console.log('see changes', changes);
   }
   ngOnInit(): void {
     // getting last updated job status
-    console.log('the status has been changed',this.jobStatus= this.job.jobHistory[this.job.jobHistory.length-1].jobStatus);
-    // if(this.job.jobHistory.length>0){
-    //   this.jobStatus= this.job.jobHistory[this.job.jobHistory.length-1].jobStatus;
-    // }
+    this.jobStatus= this.job.jobHistory[0].jobStatus;
   }
 
 }
