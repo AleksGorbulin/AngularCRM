@@ -1,0 +1,11 @@
+.imageUploadForm{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+.display-image{
+  width: 60px;
+  height: auto;
+  margin: auto 1rem;
+}

@@ -75,13 +75,11 @@ export class JobsService{
     console.log('imageURl ', imageUrl);
     this.jobs[index].images.unshift(new Images(imageUrl));
   }
-    // get the job when switching part.received status
-    getJobByWorkOrder(workOrder:string){
-      const filterJobs:Job[]=this.jobs.filter(
-        (job)=>{
-          return job.workOrderNumber.toLowerCase()===workOrder.toLowerCase();
-        }
-      );
-      return filterJobs;
+
+    // get job index by workOrder
+    getIndexByWorkOrder(workOrder:string){
+      return this.jobs.findIndex(
+        job =>job.workOrderNumber.toLowerCase()===workOrder.toLowerCase()
+      )
     }
 }

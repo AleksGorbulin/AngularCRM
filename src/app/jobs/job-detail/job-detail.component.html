@@ -27,31 +27,9 @@
 <div
   class="row"
   *ngIf="loadedTab=='picture'" >
-    <div class="col-xs-12">
-      <form (ngSubmit)="uploadImage(imageUploadForm)" #imageUploadForm="ngForm"
-      class="imageUploadForm">
-      <button type="button" class="btn btn-primary mt-1" (click)="inputFile.click()">Add picture</button>
-      <input type="file"
-       name="inputFile"
-       #inputFile
-       ngModel
-      (change)="onSelectFile($event)" style="display: none;">
-      <div style="position: relative;">
-        <img [src]="imageUrl" alt="" class="display-image">
-        <a *ngIf="imageUrl" (click)="deselectImage()" style="color: red;text-decoration:none; cursor: pointer;">x</a>
-      </div>
-
-      <button type="submit"
-      *ngIf="imageUrl!=null"
-      class="btn btn-success"
-      >Upload picture</button>
-      </form>
-      <hr>
-    <app-image-lightbox
-    [images]="job.images"
-    ></app-image-lightbox>
-    </div>
-
+  <app-images-detail
+  [images]="job.images"
+  [id]="id"></app-images-detail>
   </div>
 <!-- END IMAGES -->
   <div
@@ -72,48 +50,8 @@
         <!-- END CUSTOMER INFO -->
                   <!-- APPLIANCES -->
                   <div *ngIf="loadedTab=='appliances'">
-                    <div *ngFor="let appliance of appliances">
-                    <div class="row" >
-                      <div class="col-xs-12">
-                        <h3>{{appliance.applianceName}}</h3>
-                      </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-xs-12 col-md-6">
-                      <div class="form-group">
-                        <label for="address">Model #</label>
-                        <input
-                        type="text"
-                        [value]="appliance.model"
-                        id="address"
-                        class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-xs-12 col-md-6">
-                      <div class="form-group">
-                        <label for="address">Serial #</label>
-                        <input
-                        [value]="appliance.serial"
-                        type="text"
-                        id="address"
-                        class="form-control">
-                      </div>
-                    </div>
+                    <app-appliance-detail [appliances]=job.appliances></app-appliance-detail>
                   </div>
-                  <div class="row">
-                    <div class="col-xs-12 col-md-12">
-                      <div class="form-group">
-                        <label for="description">Description</label>
-                          <textarea
-                          class="form-control"
-                          id="description"
-                          [value]="appliance.applianceDescription"></textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <hr>
-                  </div>
-                </div>
                   <!-- END APPLIANCES -->
                   <!-- BEGINNING FINANCE -->
         <div *ngIf="loadedTab=='finance'">

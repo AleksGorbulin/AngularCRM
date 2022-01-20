@@ -1,0 +1,54 @@
+
+
+<div *ngFor="let appliance of appliances">
+
+  <div class="row" >
+    <div class="col-xs-12">
+      <!-- <h3>{{appliance.applianceName}}</h3> -->
+    </div>
+  </div>
+  <fieldset class="border ">
+    <legend>{{appliance.applianceName}}</legend>
+  <div class="row">
+  <div class="col-xs-12 col-md-6">
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">Model</span>
+      <input
+      type="text"
+      [value]="appliance.model"
+      id="address"
+      class="form-control">
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">Serial</span>
+      <input
+      [value]="appliance.serial"
+      type="text"
+      id="address"
+      class="form-control">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">Description</span>
+        <textarea
+        class="form-control"
+        id="description"
+        [value]="appliance.applianceDescription"></textarea>
+        </div>
+    </div>
+  </div>
+</div>
+<!-- <hr> -->
+</fieldset>
+</div>
+

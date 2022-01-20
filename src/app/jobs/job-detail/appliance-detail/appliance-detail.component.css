@@ -1,0 +1,17 @@
+fieldset
+{
+  border:2px solid #ccc;
+  border-radius: 0.5rem;
+  padding:0 1rem;
+  margin-bottom: 3rem;
+}
+legend
+{
+    width:inherit; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+    margin-left: 2rem;
+}
+.input-group-addon{
+  min-width: 95px;
+}

@@ -14,7 +14,7 @@
      *ngFor="let jobEl of jobs; let i=index; "
      [job]=jobEl
      [jobId]=i
-     [jobStatus]=jobEl.jobHistory[jobEl.jobHistory.length-1].jobStatus
+     [jobStatus]=jobEl.jobHistory[0].jobStatus
      ></app-job-item>
   </div>
 </div>

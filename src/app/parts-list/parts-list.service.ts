@@ -38,14 +38,23 @@ private  parts:Part[]=[
     this.updatedParts.next(this.parts.slice());
   }
   checkIfAllPartsReceived(workOrder){
-    const job:Job[] = this.jobsService.getJobByWorkOrder(workOrder);
-    console.log('JOB', job)
-    const allPartsReceived =job.every(job=>{return job.parts.every(part=>{return part.received===true})});
-    console.log('all parts received ',allPartsReceived);
+    // find job index
+    const jobIndex = this.jobsService.getIndexByWorkOrder(workOrder);
+    //
+    // const job:Job[] = this.jobsService.getJobByWorkOrder(workOrder);
+    // get a job instance
+    const job:Job= this.jobsService.getJob(+jobIndex);
+
+    // const job:Job = this.jobsService.getJob[];
+    // check if all parts received for this job
+    const allPartsReceived =job.parts.every(part=>{return part.received===true});
     if(allPartsReceived){
       // create a new job history
-      const jobHistory:JobHistory = new JobHistory('01/18/22', 'parts received','part department checked out all parts received');
-      this.jobsService.addStatusUpdate(0,jobHistory);
+      var jobHistory:JobHistory = new JobHistory('01/18/22', 'parts received','part department checked out all parts received');
+    }else{
+      var jobHistory:JobHistory = new JobHistory('01/18/22', 'waiting for parts','part department updated parts');
     }
+    this.jobsService.addStatusUpdate(jobIndex,jobHistory);
+
   }
 }

@@ -19,6 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerInfoComponent } from './jobs/job-detail/customer-info/customer-info.component';
 import { JobsService } from './jobs/jobs.service';
 import { ImageLightBoxComponent } from './shared/image-lightBox/image-lightBox.component';
+import { ApplianceDetailComponent } from './jobs/job-detail/appliance-detail/appliance-detail.component';
+import { ImagesDetailComponent } from './jobs/job-detail/images-detail/images-detail.component';
 
 
 
@@ -38,6 +40,8 @@ import { ImageLightBoxComponent } from './shared/image-lightBox/image-lightBox.c
     JobStartComponent,
     CustomerInfoComponent,
     ImageLightBoxComponent,
+    ApplianceDetailComponent,
+    ImagesDetailComponent,
 
 
   ],
