@@ -40,8 +40,15 @@ private  parts:Part[]=[
   }
   updatePart(index:number, newPart:Part){
     // this.parts[index] = newPart;
-
+    // assign new values instead of assigning a new part to not override the object
     this.parts[index].name=newPart.name;
+    this.parts[index].cost=newPart.cost;
+    this.parts[index].jobId=newPart.jobId;
+    this.parts[index].number=newPart.number;
+    this.parts[index].quantity=newPart.quantity;
+    this.parts[index].received=newPart.received;
+    this.parts[index].retail=newPart.retail;
+    this.parts[index].trackNumber=newPart.trackNumber;
     this.updatedParts.next(this.parts.slice());
     console.log('JOBS PARTS',this.parts);
   }
