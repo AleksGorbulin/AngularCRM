@@ -3,23 +3,28 @@
     <form (ngSubmit)="submitForm(f)" #f="ngForm">
       <div class="row">
         <div class="col-xs-12 form-group">
-          <label for="partNumber">Part Number</label>
+          <div class="input-group">
+            <span class="input-group-addon">Part number</span>
           <input
           ngModel
           name="partNumber"
           required
            type="text" id="partNumber" class="form-control">
+           </div>
         </div>
         <div class="col-sm-12 form-group">
-          <label for="description">Description</label>
+          <div class="input-group">
+            <span class="input-group-addon">Description</span>
           <input
           ngModel
           name="description"
           required
           type="text" id="description" class="form-control">
+          </div>
         </div>
         <div class="col-xs-12 form-group">
-          <label for="quantity">Quantity</label>
+          <div class="input-group">
+            <span class="input-group-addon">Quantity</span>
           <input
           ngModel
           name="quantity"
@@ -28,11 +33,13 @@
           id="quantity"
           class="form-control"
           pattern="^[1-9]+[0-9]*$">
+          </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-6 form-group">
-          <label for="cost">Cost</label>
+        <div class="col-xs-12 form-group">
+          <div class="input-group">
+            <span class="input-group-addon">Cost</span>
           <input
           ngModel
           name="cost"
@@ -41,23 +48,29 @@
           class="form-control"
           pattern="^[1-9]+[0-9]*$"
           >
+          </div>
         </div>
-        <div class="col-xs-6 form-group">
-          <label for="retail">Retail</label>
+        <div class="col-xs-12 form-group">
+          <div class="input-group">
+            <span class="input-group-addon">Retail</span>
           <input
           ngModel
           name="retail" type="number" id="retail"
           class="form-control"
           pattern="^[1-9]+[0-9]*$">
+          </div>
         </div>
         <div class="col-xs-12 form-group">
-          <label for="trackNumber">TrackingNumber</label>
+          <div class="input-group">
+            <span class="input-group-addon">Tracking</span>
           <input
           ngModel
           name="trackNumber" type="text" id="trackNumber" class="form-control">
+          </div>
         </div>
         <div class="col-xs-12 form-group">
-          <label for="received">Received</label>
+          <div class="input-group">
+            <span class="input-group-addon">Received</span>
           <select
           [ngModel]=false
           name="received" id="received" class="form-control"
@@ -66,6 +79,7 @@
             <option [ngValue]=true >Yes</option>
             <option [ngValue]=false>No</option>
           </select>
+          </div>
         </div>
       </div>
       <div class="row">

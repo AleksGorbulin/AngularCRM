@@ -40,6 +40,7 @@ private  parts:Part[]=[
   }
   updatePart(index:number, newPart:Part){
     // this.parts[index] = newPart;
+
     this.parts[index].name=newPart.name;
     this.updatedParts.next(this.parts.slice());
     console.log('JOBS PARTS',this.parts);
