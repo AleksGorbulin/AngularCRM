@@ -39,7 +39,7 @@ export class PartEditComponent implements OnInit, OnDestroy {
   submitForm(form:NgForm){
     const value = form.value;
     const newPart:Part= new Part(
-      'asdf',
+      this.editedItem.jobId,
       value.partNumber,
       value.description,
       value.quantity,

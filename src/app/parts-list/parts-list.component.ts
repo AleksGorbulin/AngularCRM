@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Part } from '../shared/part.model';
 import { PartsListService } from './parts-list.service';
-import { isBoolean } from 'util';
+import { JobsService } from '../jobs/jobs.service';
+import { Job } from '../jobs/jobs.model';
 
 @Component({
   selector: 'app-parts-list',
@@ -10,15 +11,19 @@ import { isBoolean } from 'util';
 })
 export class PartsListComponent implements OnInit, OnDestroy {
   parts:Part[];
+  jobs:Job[];
   private subscription;
 
-  constructor(private partsListService:PartsListService) { }
+  constructor(private partsListService:PartsListService
+              ) { }
 
   ngOnInit(): void {
-    this.parts= this.partsListService.getParts();
+    // this.parts= this.partsListService.getParts();
+    this.parts=this.partsListService.getPartsFromJobs();
     this.subscription=this.partsListService.updatedParts.subscribe(
       (updatedParts:Part[])=>{
         this.parts=updatedParts;
+        console.log('updated parts with slon', this.parts)
       }
     );
   }
@@ -30,6 +35,7 @@ export class PartsListComponent implements OnInit, OnDestroy {
   }
   changePartStatus(index,jobId){
     this.parts[index].received= !this.parts[index].received;
+    this.parts[index].quantity=10;
     this.partsListService.checkIfAllPartsReceived(jobId);
   }
 }

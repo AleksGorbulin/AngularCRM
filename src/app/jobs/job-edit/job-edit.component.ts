@@ -16,6 +16,7 @@ export class JobEditComponent implements OnInit {
 editMode=false;
 workOrderForm:FormGroup;
 id:number; //job Id
+workOrderNumberForPart; // workorder number for part jobId
 loadedTab:string="info";
 
   constructor(private route:ActivatedRoute,
@@ -62,6 +63,7 @@ loadedTab:string="info";
       if (this.editMode){
         const job = this.jobService.getJob(+this.id);
         workOrderNumber = job.workOrderNumber;
+        this.workOrderNumberForPart=job.workOrderNumber;
         name = job.name;
         phone = job.phone;
         houseNumber=job.houseNumber;
@@ -157,7 +159,7 @@ loadedTab:string="info";
         'quantity': new FormControl(null,[Validators.required,
                                           Validators.pattern(/^[1-9]+[0-9]*$/)]),
         // this FormControllers are not required. They filled up by manager on Parts page
-        'jobId': new FormControl(null),
+        'jobId': new FormControl(this.workOrderNumberForPart),
         'cost':new FormControl(null),
         'retail':new FormControl(null),
         'trackNumber':new FormControl(null),
