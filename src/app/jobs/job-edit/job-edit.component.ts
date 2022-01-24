@@ -204,15 +204,20 @@ loadedTab:string="info";
   }
   addAppliance(){
     // beginnig trying
-    const applianceFormArray:FormArray= <FormArray>this.workOrderForm.get('appliances');
-    const newApplianceFromGroup = new FormGroup({
-      'applianceName':new FormControl(null, Validators.required),
-      'applianceBrand':new FormControl(null,Validators.required),
-      'model':new FormControl(null,Validators.required),
-      'serial': new FormControl(null,Validators.required),
-      'applianceDescription':new FormControl(null, Validators.required)
-    });
-    applianceFormArray.controls.unshift(newApplianceFromGroup);
+    // const applianceFormArray:FormArray= <FormArray>this.workOrderForm.get('appliances');
+    // const newApplianceFromGroup = new FormGroup({
+      const appArray = (<FormArray>this.workOrderForm.get('appliances')).insert(0,
+          new FormGroup({
+        'applianceName':new FormControl(null, Validators.required),
+        'applianceBrand':new FormControl(null,Validators.required),
+        'model':new FormControl(null,Validators.required),
+        'serial': new FormControl(null,Validators.required),
+        'applianceDescription':new FormControl(null, Validators.required)
+      }))
+      // appArray.controls.unshift(applianceFormGroup);
+      // (<FormArray>this.workOrderForm.get('appliances')).push(
+      //   applianceFormGroup
+      //   )
   }
   onSubmit(){
     const newJob = new Job(
@@ -237,6 +242,7 @@ loadedTab:string="info";
       this.workOrderForm.value['appliances'],
       this.workOrderForm.value['jobHistory']
     )
+      console.log('onSUbmit appliances', this.workOrderForm.value['appliances']);
     if(this.editMode){
       // we can pass workOrderForm because fields in the form are the same
       // as jobs.model
