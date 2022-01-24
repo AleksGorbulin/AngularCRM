@@ -3,9 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { JobsService } from '../jobs.service';
 import { Job } from '../jobs.model';
-import { Address } from 'src/app/shared/address.model';
-import { ThisReceiver } from '@angular/compiler';
-import { rejects } from 'assert';
+
 
 @Component({
   selector: 'app-job-edit',
@@ -44,6 +42,16 @@ loadedTab:string="info";
       let street = '';
       let city = '';
       let zip ;
+      //
+      let jobSource='';
+      let jobNumberAssigned='';
+      let jobType= false;
+      let jobAuthorization='';
+      let jobCreated = new Date();
+      let jobAppointmentDate= new Date();
+      let jobAppointmentTime= new Date();
+      let jobCompletionDate=new Date();
+      //
       let imagesGroup = new FormArray([]);
       let addressGroup = new FormArray([]);
       let workOrderParts = new FormArray([]);
@@ -71,6 +79,14 @@ loadedTab:string="info";
         city=job.city;
         zip = job.zip;
         description = job.description;
+        jobSource= job.jobSource;
+        jobNumberAssigned= job.jobNumberAssigned;
+        jobType=job.jobType;
+        jobAuthorization = job.jobAuthorization;
+        jobCreated= job.jobCreated;
+        jobAppointmentDate = job.jobAppointmentDate;
+        jobAppointmentTime= job.jobAppointmentTime;
+        jobCompletionDate = job.jobCompletionDate;
         // check if job history exist
         if(job.jobHistory){
           for(let history of job.jobHistory){
@@ -110,6 +126,7 @@ loadedTab:string="info";
                 'cost':new FormControl(part.cost),
                 'retail':new FormControl(part.retail),
                 'trackNumber':new FormControl(part.trackNumber),
+                'partOrderNumber':new FormControl(part.partOrderNumber),
                 'received':new FormControl(part.received)
               }
               )
@@ -119,9 +136,19 @@ loadedTab:string="info";
         // checking if appliances exist
         if(job.appliances){
           for(let appliance of job.appliances){
+    //         const applianceFormArray:FormArray= <FormArray>this.workOrderForm.get('appliances');
+    //             const newApplianceFromGroup =new FormGroup({
+    //   'applianceName':new FormControl(null, Validators.required),
+    //   'applianceBrand':new FormControl(null,Validators.required),
+    //   'model':new FormControl(null,Validators.required),
+    //   'serial': new FormControl(null,Validators.required),
+    //   'applianceDescription':new FormControl(null, Validators.required)
+    // });
+    // applianceFormArray.controls.unshift(newApplianceFromGroup);
             appliancesGroup.push(
              new FormGroup({
                 'applianceName': new FormControl(appliance.applianceName, Validators.required),
+                'applianceBrand':new FormControl(appliance.applianceBrand,Validators.required),
                 'model': new FormControl(appliance.model, Validators.required),
                 'serial': new FormControl(appliance.serial,Validators.required),
                 'applianceDescription': new FormControl(appliance.applianceDescription,Validators.required),
@@ -140,6 +167,13 @@ loadedTab:string="info";
         'street':new FormControl(street,Validators.required),
         'city':new FormControl(city,Validators.required),
         'zip':new FormControl(zip,Validators.required),
+        'jobSource': new FormControl(jobSource,Validators.required),
+        'jobNumberAssigned': new FormControl(jobNumberAssigned,Validators.required),
+        'jobType': new FormControl(jobType,Validators.required),
+        'jobCreated': new FormControl(jobCreated,Validators.required),
+        'jobAppointmentDate': new FormControl(jobAppointmentDate,Validators.required),
+        'jobAppointmentTime': new FormControl(jobAppointmentTime,Validators.required),
+        'jobCompletionDate': new FormControl(jobCompletionDate,Validators.required),
         'images': imagesGroup,
         'address':addressGroup,
         'parts':workOrderParts,
@@ -163,6 +197,7 @@ loadedTab:string="info";
         'cost':new FormControl(null),
         'retail':new FormControl(null),
         'trackNumber':new FormControl(null),
+        'partOrderNumber':new FormControl(null),
         'received':new FormControl(false)
       })
     )
@@ -170,22 +205,14 @@ loadedTab:string="info";
   addAppliance(){
     // beginnig trying
     const applianceFormArray:FormArray= <FormArray>this.workOrderForm.get('appliances');
-    const newApplianceFromGroup =new FormGroup({
+    const newApplianceFromGroup = new FormGroup({
       'applianceName':new FormControl(null, Validators.required),
+      'applianceBrand':new FormControl(null,Validators.required),
       'model':new FormControl(null,Validators.required),
       'serial': new FormControl(null,Validators.required),
       'applianceDescription':new FormControl(null, Validators.required)
     });
     applianceFormArray.controls.unshift(newApplianceFromGroup);
-    // end trying
-    (<FormArray>this.workOrderForm.get('appliances')).push(
-      new FormGroup({
-        'applianceName':new FormControl(null, Validators.required),
-        'model':new FormControl(null,Validators.required),
-        'serial': new FormControl(null,Validators.required),
-        'applianceDescription':new FormControl(null, Validators.required)
-      })
-    )
   }
   onSubmit(){
     const newJob = new Job(
@@ -197,6 +224,14 @@ loadedTab:string="info";
       this.workOrderForm.value['street'],
       this.workOrderForm.value['city'],
       this.workOrderForm.value['zip'],
+      this.workOrderForm.value['jobSource'],
+      this.workOrderForm.value['jobNumberAssigned'],
+      this.workOrderForm.value['jobType'],
+      this.workOrderForm.value['jobAuthorization'],
+      this.workOrderForm.value['jobCreated'],
+      this.workOrderForm.value['jobAppointmentDate'],
+      this.workOrderForm.value['jobAppointmentTime'],
+      this.workOrderForm.value['jobCompletionDate'],
       this.workOrderForm.value['images'],
       this.workOrderForm.value['parts'],
       this.workOrderForm.value['appliances'],

@@ -1,6 +1,6 @@
 <form [formGroup]="workOrderForm" (ngSubmit)="onSubmit()">
 <ul class="nav nav-tabs">
-  <li (click)="onSelectTab('info')"  [ngClass]="loadedTab=='info'? 'active':null"><a>Customer info</a></li>
+  <li (click)="onSelectTab('info')"  [ngClass]="loadedTab=='info'? 'active':null"><a>General</a></li>
   <li (click)="onSelectTab('picture')" [ngClass]="loadedTab=='picture'? 'active':null"><a>Pictures</a></li>
   <li (click)="onSelectTab('appliances')" [ngClass]="loadedTab=='appliances'? 'active':null"><a>Appliances</a></li>
   <li (click)="onSelectTab('parts')" [ngClass]="loadedTab=='parts'? 'active':null"><a>Parts</a></li>
@@ -13,7 +13,7 @@
       <div  *ngIf="loadedTab == 'info'">
       <div class="row">
         <div class="col-md-6"> <!--left column: customer infor beginning-->
-          <label for="">Customer information</label>
+          <label for="">Edit Customer information</label>
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon">Name</span>
@@ -76,29 +76,82 @@
           </div>
         </div><!--left column end-->
         <div class="col-md-6"><!--right column:insurance infor beginning-->
-          <label for="">Insurance Information</label>
+          <label for="">Edit Job Information</label>
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon">Work Order</span>
             <input
             formControlName="workOrderNumber"
             type="text"
-            id="workOrderNumber"
             class="form-control">
             </div>
           </div>
           <div class="form-group">
             <div class="input-group">
-              <span class="input-group-addon">Date added</span>
+              <span class="input-group-addon">Source</span>
+            <input
+            type="text"
+            formControlName="jobSource"
+            class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">Job #</span>
+            <input
+            type="text"
+            formControlName="jobNumberAssigned"
+            class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">Job Type</span>
+            <input
+            type="text"
+            formControlName="jobType"
+            class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">Created</span>
             <input
             type="date"
-            id="workOrderNumber"
+            formControlName="jobCreated"
             class="form-control">
             </div>
           </div>
           <div class="form-group">
             <div class="input-group">
-              <span class="input-group-addon">Description</span>
+              <span class="input-group-addon">Appt date</span>
+            <input
+            type="date"
+            formControlName="jobAppointmentDate"
+            class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">Appt time</span>
+            <input
+            type="time"
+            formControlName="jobAppointmentTime"
+            class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">Completed</span>
+            <input
+            type="date"
+            formControlName="jobCompletionDate"
+            class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">Private<br> Notes</span>
             <textarea
             formControlName="description"
             type="text"
@@ -143,7 +196,7 @@
            <div class="row vertical-align ">
            <div class="col-xs-11">
                 <div class="row" >
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                       <div class="input-group">
                         <span class="input-group-addon">Appliance</span>
                        <input
@@ -151,6 +204,16 @@
                        id="applianceName"
                        class="form-control"
                        formControlName="applianceName">
+                         </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="input-group">
+                        <span class="input-group-addon">Brand</span>
+                       <input
+                       type="text"
+                       id="applianceName"
+                       class="form-control"
+                       formControlName="applianceBrand">
                          </div>
                     </div>
                 </div>

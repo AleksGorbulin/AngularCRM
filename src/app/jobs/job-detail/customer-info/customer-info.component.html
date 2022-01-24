@@ -1,20 +1,11 @@
 <div class="row">
-  <!-- <div class="col-xs-6 pl-2">
-    <div class="form-group">
-      <div class="input-group">
-        <span class="input-group-addon">Name</span>
-        <p>{{job.name}}</p>
-      </div>
-    </div>
-  </div> -->
   <div class="col-xs-6 pull-right">
-    <div class="form-group">
-        <h2 class="pull-right" style="color: red;">{{job.workOrderNumber}}</h2>
-    </div>
+
   </div>
 </div>
 <div class="row">
   <div class="col-lg-6">
+    <label for="">Customer information</label>
     <div class="form-group">
       <div class="input-group">
         <span class="input-group-addon">Name</span>
@@ -33,12 +24,8 @@
         <p id="address" class="form-control"><a href="map">{{job.houseNumber}} {{job.street}} {{job.city}}, {{job.zip}}</a></p>
     </div>
     </div>
-</div> <!--end left column-->
-<div class="col-lg-6"> <!--beginning right column-->
-
-  <form (ngSubmit)="updateStatus(f)" #f="ngForm" >
-
-
+    <form (ngSubmit)="updateStatus(f)" #f="ngForm" >
+      <label for="">Change job status</label>
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon">Job Status</span>
@@ -87,6 +74,61 @@
         *ngIf="privateNotes.invalid && (privateNotes.dirty || privateNotes.touched) ">Explanation required</span>
       </div>
   </form>
+  <!-- end status change form -->
+</div> <!--end left column-->
+<div class="col-lg-6"> <!--beginning right column-->
+  <label for="">Job information</label>
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon">Work ord#</span>
+          <p class="form-control">{{job.workOrderNumber}}</p>
+    </div>
+  </div>
+
+  <!-- beginning date appointment block -->
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon">Source</span>
+        <p  class="form-control">{{job.jobSource}}</p>
+    </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">Job #</span>
+          <p class="form-control">{{job.jobNumberAssigned}}</p>
+      </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">Job Type</span>
+            <p id="address" class="form-control">{{job.jobType}}</p>
+        </div>
+        </div>
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon">Created</span>
+        <p id="address" class="form-control">{{job.jobCreated|date}}</p>
+    </div>
+    </div>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">Appt date</span>
+          <p id="address" class="form-control">{{job.jobAppointmentDate|date}}</p>
+      </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">Appt time</span>
+            <p id="address" class="form-control">{{job.jobAppointmentTime|date:'h:mm'}} </p>
+        </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon">Completed</span>
+              <p id="address" class="form-control">{{job.jobCompletionDate|date:'short'}} </p>
+          </div>
+          </div>
+  <!-- end date appointment block -->
 
 </div><!--end right column-->
 </div><!--end row -->

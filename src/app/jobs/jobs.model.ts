@@ -13,8 +13,17 @@ export class Job{
   public street:string;
   public city: string;
   public zip:number;
+  // adding aditional job information
+  public jobSource:string; // COD, Insurance, etc...
+  public jobNumberAssigned:string; // Number received from insurance company
+  public jobType: boolean; // Type of job Original or recall
+  public jobAuthorization: string; //Authorization Number for the job
+  public jobCreated:Date; // Date when job was created
+  public jobAppointmentDate:Date; // Date when job appointment for service
+  public jobAppointmentTime:Date; // Time when job appointment for service
+  public jobCompletionDate:Date; // Date when job was completed
+  // added additional job information
   public images:Images[];
-  // public address:Address[];
   public parts:Part[];
   public appliances:Appliance[];
   public jobHistory:JobHistory[];
@@ -27,8 +36,17 @@ export class Job{
               street:string,
               city: string,
               zip:number,
+              // adding additional job information maybee needed to be in separate array
+              jobSource:string,
+              jobNumberAssigned:string,
+              jobType:boolean,
+              jobAuthorization: string,
+              jobCreated:Date,
+              jobAppointmentDate:Date,
+              jobAppointmentTime:Date,
+              jobCompletionDate:Date,
+              // end additional job information maybee needed to be in separate array
               images:Images[],
-              // address:Address[],
               parts:Part[],
               appliances:Appliance[],
               jobHistory:JobHistory[]){
@@ -40,9 +58,17 @@ export class Job{
     this.street=street;
     this.city=city;
     this.zip=zip;
-    // this.imagePath=imagePath;
+    // adding additional job information maybee needed to be in separate array
+    this.jobSource=jobSource;
+    this.jobNumberAssigned=jobNumberAssigned;
+    this.jobType=jobType;
+    this.jobAuthorization= jobAuthorization;
+    this.jobCreated=jobCreated;
+    this.jobAppointmentDate=jobAppointmentDate;
+    this.jobAppointmentTime=jobAppointmentTime;
+    this.jobCompletionDate=jobCompletionDate;
+    // end additional job information maybee needed to be in separate array
     this.images = images;
-    // this.address=address;
     this.parts=parts;
     this.appliances = appliances;
     this.jobHistory = jobHistory;

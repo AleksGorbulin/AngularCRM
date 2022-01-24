@@ -14,21 +14,23 @@ export class JobsService{
 
  private jobs:Job[]=[
     new Job('B0044','John Snow', 'Refrigerator leaks water','619-888-8888','2517','Northside dr','San Diego',92108,
+    'Asurion','SNDP12322',true,'12323323',new Date(), new Date(), new Date(), new Date(),
           [new Images('https://www.cnet.com/a/img/RPPYpCDQzZi-1Eyg2K4EVBvznaU=/940x0/2015/07/28/59f8ac3c-28ee-4bb3-9ef4-8bfd8e33e2ff/river-kenmore-72484-four-door-refrigerator-product-photos-1.jpg'),
               new Images('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLRh145NsLEoHFBhZCZFwyNhG_J7ppRK2eIw&usqp=CAU'),
               new Images('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLRh145NsLEoHFBhZCZFwyNhG_J7ppRK2eIw&usqp=CAU'),
               new Images('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLRh145NsLEoHFBhZCZFwyNhG_J7ppRK2eIw&usqp=CAU'),
               new Images('https://www.cnet.com/a/img/RPPYpCDQzZi-1Eyg2K4EVBvznaU=/940x0/2015/07/28/59f8ac3c-28ee-4bb3-9ef4-8bfd8e33e2ff/river-kenmore-72484-four-door-refrigerator-product-photos-1.jpg')],
-          [new Part('B0044','12343','compressor',1,10,20,'1ewsdfe3',false),
-              new Part('B0044','45432','filter dryer',1,1,2,'1ewsdfe3',false)],
-          [new Appliance('Dryer','tnks422342','ekstr3443','display does not work'),
-              new Appliance('Washer','N/A','ekstr3443','No problem found')],
+          [new Part('B0044','12343','compressor',1,10,20,'1ewsdfe3','123ewwe4',false),
+              new Part('B0044','45432','filter dryer',1,1,2,'1ewsdfe3','99332ew',false)],
+          [new Appliance('Dryer','Kenmore','tnks422342','ekstr3443','display does not work'),
+              new Appliance('Washer','Bosch','N/A','ekstr3443','No problem found')],
           [new JobHistory('jun 12,2002', 'completed','Good job')]),
     new Job('B0045','Maradonna', 'Dryer does not work','619-777-7777','7','Danshenskiy per','Kursk',10750,
+    'COD','LG123',true,'12323323',new Date(), new Date(), new Date(), new Date(),
           [new Images('https://www.mrrooter.com/images/blog/MRR-BlogGraphic-WhyRefrigeratorLeakWater-0718.1807260706440.jpg')],
-          [new Part('B0045','9000','igniter',1,10,20,'1ewsdfe3',true),
-              new Part('B0045','11111','belt',1,10,20,'1ewsdfe3',false)],
-          [new Appliance('Refrigerator','543344','sdfdf','handle')],
+          [new Part('B0045','9000','igniter',1,10,20,'1ewsdfe3','asdfr4343',true),
+              new Part('B0045','11111','belt',1,10,20,'1ewsdfe3','23wdsd',false)],
+          [new Appliance('Refrigerator','LG','543344','sdfdf','handle')],
           [new JobHistory('2022-01-05', 'not completed','Good job')])];
 
   getJobs(){

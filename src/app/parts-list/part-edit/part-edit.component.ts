@@ -31,6 +31,7 @@ export class PartEditComponent implements OnInit, OnDestroy {
            cost: this.editedItem.cost,
            retail:this.editedItem.retail,
            trackNumber:this.editedItem.trackNumber,
+           partOrderNumber:this.editedItem.partOrderNumber,
            received:this.editedItem.received
         });
       }
@@ -46,6 +47,7 @@ export class PartEditComponent implements OnInit, OnDestroy {
       value.cost,
       value.retail,
       value.trackNumber,
+      value.partOrderNumber,
       value.received
     );
     if(this.editMode){

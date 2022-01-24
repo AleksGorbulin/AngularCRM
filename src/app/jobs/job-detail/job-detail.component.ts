@@ -6,7 +6,7 @@ import { PartsListService } from 'src/app/parts-list/parts-list.service';
 import { JobsService } from '../jobs.service';
 import { ActivatedRoute, Params} from '@angular/router';
 import { Appliance } from 'src/app/shared/appliance.model';
-import { createNgModule } from '@angular/compiler/src/core';
+
 
 
 @Component({

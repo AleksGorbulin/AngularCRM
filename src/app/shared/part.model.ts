@@ -7,5 +7,6 @@ export class Part{
     public cost: number,
     public retail:number,
     public trackNumber:string,
+    public partOrderNumber:string,
     public received:boolean){}
 }
