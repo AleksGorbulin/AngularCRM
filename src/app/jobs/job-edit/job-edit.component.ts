@@ -16,6 +16,7 @@ workOrderForm:FormGroup;
 id:number; //job Id
 workOrderNumberForPart; // workorder number for part jobId
 loadedTab:string="info";
+today: string; // variable to keep todays date
 
   constructor(private route:ActivatedRoute,
               private jobService:JobsService,
@@ -29,9 +30,7 @@ loadedTab:string="info";
         this.initForm();
       }
     );
-    // this.jobService.jobsUpdated.subscribe(
-
-    // )
+      this.today= new Date().toISOString().split('T')[0];
   }
   private initForm(){
       let workOrderNumber= '';
@@ -203,9 +202,6 @@ loadedTab:string="info";
     )
   }
   addAppliance(){
-    // beginnig trying
-    // const applianceFormArray:FormArray= <FormArray>this.workOrderForm.get('appliances');
-    // const newApplianceFromGroup = new FormGroup({
       const appArray = (<FormArray>this.workOrderForm.get('appliances')).insert(0,
           new FormGroup({
         'applianceName':new FormControl(null, Validators.required),
@@ -214,10 +210,6 @@ loadedTab:string="info";
         'serial': new FormControl(null,Validators.required),
         'applianceDescription':new FormControl(null, Validators.required)
       }))
-      // appArray.controls.unshift(applianceFormGroup);
-      // (<FormArray>this.workOrderForm.get('appliances')).push(
-      //   applianceFormGroup
-      //   )
   }
   onSubmit(){
     const newJob = new Job(

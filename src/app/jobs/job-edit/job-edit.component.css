@@ -4,7 +4,7 @@ textarea.ng-invalid.ng-touched{
 }
 .vertical-align {
   display: flex;
-  align-items: center;
+  justify-content: center;
 }
 .input-group-addon{
   min-width: 95px;
