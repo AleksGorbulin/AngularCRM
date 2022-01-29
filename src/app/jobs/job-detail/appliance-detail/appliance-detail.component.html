@@ -1,5 +1,5 @@
 
-
+<form [formGroup]="applianceUpdateForm" (ngSubmit)="onApplianceUpdate()">
 <div *ngFor="let appliance of appliances">
 
   <div class="row" >
@@ -51,4 +51,4 @@
 <!-- <hr> -->
 </fieldset>
 </div>
-
+</form>

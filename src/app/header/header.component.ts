@@ -7,6 +7,7 @@ import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 @Output() selectedTab = new EventEmitter<string>()
+collapsed = true;
   constructor() { }
 
   ngOnInit(): void {

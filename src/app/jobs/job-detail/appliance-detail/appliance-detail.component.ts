@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Appliance } from 'src/app/shared/appliance.model';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-appliance-detail',
@@ -8,10 +9,14 @@ import { Appliance } from 'src/app/shared/appliance.model';
 })
 export class ApplianceDetailComponent implements OnInit {
 @Input("appliances") appliances:Appliance[];
-
+@Input("jobId") jobid:string;
+applianceUpdateForm:FormGroup;
   constructor() { }
 
   ngOnInit(): void {
+  }
+  onApplianceUpdate(){
+
   }
 
 }

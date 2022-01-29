@@ -50,7 +50,9 @@
         <!-- END CUSTOMER INFO -->
                   <!-- APPLIANCES -->
                   <div *ngIf="loadedTab=='appliances'">
-                    <app-appliance-detail [appliances]=job.appliances></app-appliance-detail>
+                    <app-appliance-detail
+                     [appliances]="job.appliances"
+                     [jobId]="job.workOrderNumber"></app-appliance-detail>
                   </div>
                   <!-- END APPLIANCES -->
                   <!-- BEGINNING FINANCE -->

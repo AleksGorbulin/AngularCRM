@@ -57,7 +57,7 @@
 .img-slides img{
   max-width:100%;
   max-height: 77vh;
-  object-fit: fill;
+  object-fit: contain!important;
 }
 .cursor {
   cursor: pointer;
