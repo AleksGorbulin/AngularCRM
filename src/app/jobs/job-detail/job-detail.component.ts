@@ -37,6 +37,12 @@ imageUrl=null;
         }
       }
     );
+    // updating detail view if edited the job
+    this.jobsService.jobUpdated.subscribe(
+      (job)=>{
+        this.job = job;
+      }
+    ) 
   }
   addParts(parts:Part[]){
     this.partsListService.addParts(parts);

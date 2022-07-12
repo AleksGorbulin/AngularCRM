@@ -15,6 +15,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class JobsService{
   searchResults = new EventEmitter<Job[]>();
   jobsUpdated = new Subject<Job[]>();
+  jobUpdated = new Subject<Job>(); //updating single view  for details job
   statusUpdated = new Subject<JobHistory[]>();
 
   constructor(private http:HttpClient,private router:Router,private route:ActivatedRoute){}
@@ -118,18 +119,11 @@ private jobs:Job[]=[];
         const oldJobIndex = updatedJobs.findIndex(({id})=>id===jobId);
         updatedJobs[oldJobIndex]= newJob;
         this.jobs= updatedJobs;
-        this.jobsUpdated.next([...this.jobs])
-        // const oldValue= this.jobs.find(({id})=>id==jobId);
+        this.jobsUpdated.next([...this.jobs]);
+        this.jobUpdated.next(newJob);
+      })
 
-        // console.log('oldValue = ', oldValue);
-      }
-
-
-      )
-    // this.jobs[jobId]=newJob;
-    // send subject to update view
-
-    this.jobsUpdated.next(this.jobs.slice());
+    // this.jobsUpdated.next(this.jobs.slice());
   }
   // delete Part
   deletePart(index:number){

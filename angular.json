@@ -121,5 +121,8 @@
       }
     }
   },
-  "defaultProject": "rescuemyappliances"
+  "defaultProject": "rescuemyappliances",
+  "cli": {
+    "analytics": false
+  }
 }
