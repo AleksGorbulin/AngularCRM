@@ -19,7 +19,7 @@ export class PartsListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // this.parts= this.partsListService.getParts();
-    this.parts=this.partsListService.getPartsFromJobs();
+    // this.parts=this.partsListService.getPartsFromJobs();
     this.subscription=this.partsListService.updatedParts.subscribe(
       (updatedParts:Part[])=>{
         this.parts=updatedParts;
@@ -36,6 +36,6 @@ export class PartsListComponent implements OnInit, OnDestroy {
   changePartStatus(index,jobId){
     this.parts[index].received= !this.parts[index].received;
     this.parts[index].quantity=10;
-    this.partsListService.checkIfAllPartsReceived(jobId);
+    // this.partsListService.checkIfAllPartsReceived(jobId);
   }
 }

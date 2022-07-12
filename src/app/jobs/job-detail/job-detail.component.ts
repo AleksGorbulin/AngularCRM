@@ -16,7 +16,7 @@ import { Appliance } from 'src/app/shared/appliance.model';
 })
 export class JobDetailComponent implements OnInit {
 job:Job;
-id:number; //job id loaded
+id:string; //job id loaded
 loadedTab:string='info'; //load choosen tab| info by default
 appliances:Appliance[];
 imageUrl=null;
@@ -30,14 +30,13 @@ imageUrl=null;
   ngOnInit(): void {
     this.route.params.subscribe(
       (params:Params)=>{
-        this.id=+params['id'];
+        this.id=params['id'];
         this.job=this.jobsService.getJob(this.id);
         if(this.job.appliances){
           this.appliances = this.job.appliances;
         }
       }
     );
-    console.log('this parts from job list ',this.job.parts );
   }
   addParts(parts:Part[]){
     this.partsListService.addParts(parts);
@@ -66,5 +65,8 @@ imageUrl=null;
   }
   deselectImage(){
     this.imageUrl=null;
+  }
+  onDelete(id:string){
+    this.jobsService.deleteJob(id);
   }
 }

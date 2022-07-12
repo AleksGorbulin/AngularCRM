@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { PartsListComponent } from './parts-list/parts-list.component';
@@ -49,9 +49,10 @@ import { ImagesDetailComponent } from './jobs/job-detail/images-detail/images-de
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [PartsListService,JobsService],
+  providers: [PartsListService, JobsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

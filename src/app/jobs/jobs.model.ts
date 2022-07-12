@@ -5,6 +5,7 @@ import { Images } from '../shared/images.model';
 import { JobHistory } from '../shared/job-history.model';
 
 export class Job{
+  public id:string;
   public workOrderNumber:string;
   public name:string;
   public description: string;
@@ -28,7 +29,8 @@ export class Job{
   public appliances:Appliance[];
   public jobHistory:JobHistory[];
 
-  constructor(workOrderNumber:string,
+  constructor(id:string,
+              workOrderNumber:string,
               name:string,
               desc: string,
               phone:string,
@@ -50,27 +52,28 @@ export class Job{
               parts:Part[],
               appliances:Appliance[],
               jobHistory:JobHistory[]){
-    this.workOrderNumber=workOrderNumber;
-    this.name=name;
-    this.description=desc;
-    this.phone=phone;
-    this.houseNumber=houseNumber;
-    this.street=street;
-    this.city=city;
-    this.zip=zip;
-    // adding additional job information maybee needed to be in separate array
-    this.jobSource=jobSource;
-    this.jobNumberAssigned=jobNumberAssigned;
-    this.jobType=jobType;
-    this.jobAuthorization= jobAuthorization;
-    this.jobCreated=jobCreated;
-    this.jobAppointmentDate=jobAppointmentDate;
-    this.jobAppointmentTime=jobAppointmentTime;
-    this.jobCompletionDate=jobCompletionDate;
-    // end additional job information maybee needed to be in separate array
-    this.images = images;
-    this.parts=parts;
-    this.appliances = appliances;
-    this.jobHistory = jobHistory;
+                    this.id=id;
+                    this.workOrderNumber=workOrderNumber;
+                    this.name=name;
+                    this.description=desc;
+                    this.phone=phone;
+                    this.houseNumber=houseNumber;
+                    this.street=street;
+                    this.city=city;
+                    this.zip=zip;
+                    // adding additional job information maybee needed to be in separate array
+                    this.jobSource=jobSource;
+                    this.jobNumberAssigned=jobNumberAssigned;
+                    this.jobType=jobType;
+                    this.jobAuthorization= jobAuthorization;
+                    this.jobCreated=jobCreated;
+                    this.jobAppointmentDate=jobAppointmentDate;
+                    this.jobAppointmentTime=jobAppointmentTime;
+                    this.jobCompletionDate=jobCompletionDate;
+                    // end additional job information maybee needed to be in separate array
+                    this.images = images;
+                    this.parts=parts;
+                    this.appliances = appliances;
+                    this.jobHistory = jobHistory;
   }
 }

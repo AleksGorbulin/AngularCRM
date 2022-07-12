@@ -21,11 +21,12 @@ export class JobsListComponent implements OnInit,OnDestroy {
     // update view if jobs change added or edited
     this.subsctiption=this.jobsService.jobsUpdated.subscribe(
       (jobs)=>{
-        this.jobs=jobs; 
+        this.jobs=jobs;
+        console.log('jobs are', this.jobs);
       }
     );
     //get/show initial jobs
-   this.jobs=this.jobsService.getJobs();
+    this.jobsService.getJobs();
     // get/show jobs after search
    this.searchSubsctiption= this.jobsService.searchResults.subscribe(
       (foundJobs)=>{

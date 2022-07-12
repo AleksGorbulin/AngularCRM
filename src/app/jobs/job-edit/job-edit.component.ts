@@ -13,7 +13,7 @@ import { Job } from '../jobs.model';
 export class JobEditComponent implements OnInit {
 editMode=false;
 workOrderForm:FormGroup;
-id:number; //job Id
+id:string; //job Id
 workOrderNumberForPart; // workorder number for part jobId
 loadedTab:string="info";
 today: string; // variable to keep todays date
@@ -25,7 +25,9 @@ today: string; // variable to keep todays date
   ngOnInit(): void {
     this.route.params.subscribe(
       (params:Params)=>{
-        this.id= params['id'];
+        // this was for front end approach. Getting params by number in array
+        // this.id= params['id'];
+        this.id = params['id']? params['id'] :null;
         this.editMode=params['id']!=null;
         this.initForm();
       }
@@ -68,7 +70,7 @@ today: string; // variable to keep todays date
       }
 
       if (this.editMode){
-        const job = this.jobService.getJob(+this.id);
+        const job = this.jobService.getJob(this.id);
         workOrderNumber = job.workOrderNumber;
         this.workOrderNumberForPart=job.workOrderNumber;
         name = job.name;
@@ -213,6 +215,7 @@ today: string; // variable to keep todays date
   }
   onSubmit(){
     const newJob = new Job(
+      this.workOrderForm.value['id'],
       this.workOrderForm.value['workOrderNumber'],
       this.workOrderForm.value['name'],
       this.workOrderForm.value['description'],
@@ -234,12 +237,14 @@ today: string; // variable to keep todays date
       this.workOrderForm.value['appliances'],
       this.workOrderForm.value['jobHistory']
     )
-      console.log('onSUbmit appliances', this.workOrderForm.value['appliances']);
     if(this.editMode){
       // we can pass workOrderForm because fields in the form are the same
       // as jobs.model
+      // assign an id if in edit mode
+      newJob.id= this.id;
       this.jobService.updateJob(this.id,newJob);
     }else{
+
       this.jobService.addJob(newJob);
     }
     this.editMode=false;

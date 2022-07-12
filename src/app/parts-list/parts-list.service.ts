@@ -15,15 +15,7 @@ private  parts:Part[]=[
     // new Part('LG001','23ds23', 'compressor', 2, 20,30,'sdf43434rff',true),
     // new Part('LG002','23ds23', 'filter', 1,10,20,'sdf43434rff',false)
   ];
-  getPartsFromJobs(){
-    this.parts=[];
-   this.jobsService.getJobs().every(
-      job=>{
-       return this.parts.push(...job.parts);
-      }
-    )
-    return this.parts;
-  }
+
   getParts(){
     // return this.parts.slice();
     return this.parts;
@@ -56,21 +48,21 @@ private  parts:Part[]=[
     this.parts.splice(index,1);
     this.updatedParts.next(this.parts.slice());
   }
-  checkIfAllPartsReceived(workOrder){
-    // find job index
-    const jobIndex = this.jobsService.getIndexByWorkOrder(workOrder);
+  // checkIfAllPartsReceived(workOrder){
+  //   // find job index
+  //   const jobIndex = this.jobsService.getIndexByWorkOrder(workOrder);
 
-    // get a job instance
-    const job:Job= this.jobsService.getJob(+jobIndex);
+  //   // get a job instance
+  //   const job:Job= this.jobsService.getJob(jobIndex);
 
-    // check if all parts received for this job
-    const allPartsReceived =job.parts.every(part=>{return part.received===true});
-    if(allPartsReceived){
-      // create a new job history
-      var jobHistory:JobHistory = new JobHistory('01/18/22', 'parts received','part department checked out all parts received');
-    }else{
-      var jobHistory:JobHistory = new JobHistory('01/18/22', 'waiting for parts','part department updated parts');
-    }
-    this.jobsService.addStatusUpdate(jobIndex,jobHistory);
-  }
+  //   // check if all parts received for this job
+  //   const allPartsReceived =job.parts.every(part=>{return part.received===true});
+  //   if(allPartsReceived){
+  //     // create a new job history
+  //     var jobHistory:JobHistory = new JobHistory('01/18/22', 'parts received','part department checked out all parts received');
+  //   }else{
+  //     var jobHistory:JobHistory = new JobHistory('01/18/22', 'waiting for parts','part department updated parts');
+  //   }
+  //   this.jobsService.addStatusUpdate(jobIndex,jobHistory);
+  // }
 }

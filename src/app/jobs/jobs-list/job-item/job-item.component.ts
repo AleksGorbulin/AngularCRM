@@ -11,7 +11,7 @@ import { Job } from '../../jobs.model';
 })
 export class JobItemComponent implements OnInit,OnChanges{
 @Input() job:Job;
-@Input() jobId:number;
+@Input() jobId:string;
 @Input() jobStatus:String= ''; // getting from parent jobStatus
 constructor() { }
 
@@ -27,7 +27,6 @@ resetCounter() {
   }
   ngOnInit(): void {
     // getting last updated job status
-    console.log('job history NOW', this.job.jobHistory[0]);
     this.jobStatus= this.job.jobHistory[0].jobStatus;
   }
 
