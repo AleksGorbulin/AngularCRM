@@ -9,19 +9,19 @@
     <div class="form-group">
       <div class="input-group">
         <span class="input-group-addon">Name</span>
-        <p class="form-control">{{job.name}}</p>
+        <p class="form-control">{{job?.name}}</p>
       </div>
     </div>
     <div class="form-group">
     <div class="input-group">
       <span class="input-group-addon">Phone</span>
-        <p class="form-control">{{job.phone}}</p>
+        <p class="form-control">{{job?.phone}}</p>
     </div>
   </div>
   <div class="form-group">
     <div class="input-group">
       <span class="input-group-addon">Address</span>
-        <p id="address" class="form-control"><a href="map">{{job.houseNumber}} {{job.street}} {{job.city}}, {{job.zip}}</a></p>
+        <p id="address" class="form-control"><a href="map">{{job?.houseNumber}} {{job?.street}} {{job?.city}}, {{job?.zip}}</a></p>
     </div>
     </div>
     <form (ngSubmit)="updateStatus(f)" #f="ngForm" >
@@ -40,9 +40,9 @@
           [ngStyle]="{'border-color':(status.invalid && status.touched)? 'red':'' }"
           >
             <option value="completed">Completed</option>
-            <option value="needParts">Needs parts</option>
-            <option value="partsReceived">Parts Received</option>
-            <option value="needSchedule">Need To Schedule</option>
+            <option value="need parts">Needs parts</option>
+            <option value="parts received">Parts Received</option>
+            <option value="need to chedule">Need To Schedule</option>
           </select>
         </div>
         <span class="help-block"
@@ -81,7 +81,7 @@
   <div class="form-group">
     <div class="input-group">
       <span class="input-group-addon">Work ord#</span>
-          <p class="form-control">{{job.workOrderNumber}}</p>
+          <p class="form-control">{{job?.workOrderNumber}}</p>
     </div>
   </div>
 
@@ -89,43 +89,43 @@
   <div class="form-group">
     <div class="input-group">
       <span class="input-group-addon">Source</span>
-        <p  class="form-control">{{job.jobSource}}</p>
+        <p  class="form-control">{{job?.jobSource}}</p>
     </div>
     </div>
     <div class="form-group">
       <div class="input-group">
         <span class="input-group-addon">Job #</span>
-          <p class="form-control">{{job.jobNumberAssigned}}</p>
+          <p class="form-control">{{job?.jobNumberAssigned}}</p>
       </div>
       </div>
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon">Job Type</span>
-            <p id="address" class="form-control">{{job.jobType}}</p>
+            <p id="address" class="form-control">{{job?.jobType}}</p>
         </div>
         </div>
   <div class="form-group">
     <div class="input-group">
       <span class="input-group-addon">Created</span>
-        <p id="address" class="form-control">{{job.jobCreated|date}}</p>
+        <p id="address" class="form-control">{{job?.jobCreated|date}}</p>
     </div>
     </div>
     <div class="form-group">
       <div class="input-group">
         <span class="input-group-addon">Appt date</span>
-          <p id="address" class="form-control">{{job.jobAppointmentDate|date}}</p>
+          <p id="address" class="form-control">{{job?.jobAppointmentDate|date}}</p>
       </div>
       </div>
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon">Appt time</span>
-            <p id="address" class="form-control">{{job.jobAppointmentTime|date:'h:mm'}} </p>
+            <p id="address" class="form-control">{{job?.jobAppointmentTime|date:'h:mm'}} </p>
         </div>
         </div>
         <div class="form-group">
           <div class="input-group">
             <span class="input-group-addon">Completed</span>
-              <p id="address" class="form-control">{{job.jobCompletionDate|date:'short'}} </p>
+              <p id="address" class="form-control">{{job?.jobCompletionDate|date:'short'}} </p>
           </div>
           </div>
   <!-- end date appointment block -->
@@ -135,9 +135,9 @@
 
 <hr>
 <h4>History
-  <span class="badge bg-secondary">{{job.jobHistory.length}}</span>
+  <span class="badge bg-secondary">{{job?.jobHistory.length}}</span>
 </h4>
-<ul class="list-group" *ngFor="let jobHistoryItem of job.jobHistory;">
+<ul class="list-group" *ngFor="let jobHistoryItem of job?.jobHistory;">
   <li class="list-group-item">{{ editDate| date:'yyyy-MM-dd'}}---{{jobHistoryItem.jobStatus}} --- {{jobHistoryItem.privateNotes}}</li>
 </ul>
 

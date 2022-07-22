@@ -64,7 +64,16 @@
         <div class="form-group">
           <div class="input-group">
             <span class="input-group-addon">Source</span>
-            <input type="text" formControlName="jobSource" class="form-control">
+            <!-- <input type="text" formControlName="jobSource" class="form-control"> -->
+            <select class="form-control" formControlName="jobSource">
+              <!-- <option selected>Choose source</option> -->
+              <option value="COD">COD</option>
+              <option value="LG">LG</option>
+              <option value="Samsung">Samsung</option>
+              <option value="Asurion">Asurion</option>
+              <option value="Old Republic">Old Republic</option>
+              <option value="American Homeshield">American Homeshield</option>
+            </select>
           </div>
         </div>
         <div class="form-group">

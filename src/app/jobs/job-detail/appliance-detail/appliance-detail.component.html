@@ -1,6 +1,7 @@
+<div *ngIf="appliances.length>0 else template">
+  <div *ngFor="let appliance of appliances">
+<form [formGroup]="applianceUpdateForm" (ngSubmit)="onApplianceUpdate()" >
 
-<form [formGroup]="applianceUpdateForm" (ngSubmit)="onApplianceUpdate()">
-<div *ngFor="let appliance of appliances">
 
   <div class="row" >
     <div class="col-xs-12">
@@ -8,7 +9,7 @@
     </div>
   </div>
   <fieldset class="border ">
-    <legend>{{appliance.applianceName}} {{appliance.applianceBrand}}</legend>
+    <legend>{{appliance?.applianceName}}   {{appliance?.applianceBrand}}</legend>
   <div class="row">
   <div class="col-xs-12 col-md-6">
     <div class="form-group">
@@ -16,7 +17,7 @@
         <span class="input-group-addon">Model</span>
       <input
       type="text"
-      [value]="appliance.model"
+      [value]="appliance?.model"
       id="address"
       class="form-control">
       </div>
@@ -27,7 +28,7 @@
       <div class="input-group">
         <span class="input-group-addon">Serial</span>
       <input
-      [value]="appliance.serial"
+      [value]="appliance?.serial"
       type="text"
       id="address"
       class="form-control">
@@ -43,12 +44,16 @@
         <textarea
         class="form-control"
         id="description"
-        [value]="appliance.applianceDescription"></textarea>
+        [value]="appliance?.applianceDescription"></textarea>
         </div>
     </div>
   </div>
 </div>
 <!-- <hr> -->
 </fieldset>
-</div>
 </form>
+</div>
+</div>
+<ng-template #template>
+  <h1>No appliances added yet.</h1>
+</ng-template>

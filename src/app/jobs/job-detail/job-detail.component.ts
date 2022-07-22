@@ -6,7 +6,7 @@ import { PartsListService } from 'src/app/parts-list/parts-list.service';
 import { JobsService } from '../jobs.service';
 import { ActivatedRoute, Params} from '@angular/router';
 import { Appliance } from 'src/app/shared/appliance.model';
-
+import { map, tap } from 'rxjs/operators';
 
 
 @Component({
@@ -31,8 +31,15 @@ imageUrl=null;
     this.route.params.subscribe(
       (params:Params)=>{
         this.id=params['id'];
-        this.job=this.jobsService.getJob(this.id);
-        if(this.job.appliances){
+        // this.job=this.jobsService.getJob(this.id);
+        // 
+        this.jobsService.getJobDemo(this.id)
+        .subscribe(
+          jobData=> {
+            this.job=jobData;
+          }
+        );
+        if(this.job){
           this.appliances = this.job.appliances;
         }
       }
@@ -49,10 +56,8 @@ imageUrl=null;
   }
   onSelectTab(arg:string){
     this.loadedTab = arg;
-    console.log('loadedTab', this.loadedTab);
   }
   onSelectFile(event){
-    console.log('event value is ', event.target.value)
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
 
@@ -64,7 +69,6 @@ imageUrl=null;
     }
   }
   uploadImage(form:NgForm){
-    console.log('form uploaded ', form.value);
     this.jobsService.addImages(this.id,this.imageUrl);
     this.imageUploadForm.resetForm();
     this.imageUrl=null;

@@ -12,6 +12,7 @@ import { Job } from '../jobs.model';
 })
 export class JobEditComponent implements OnInit {
 editMode=false;
+job:Job;
 workOrderForm:FormGroup;
 id:string; //job Id
 workOrderNumberForPart; // workorder number for part jobId
@@ -25,8 +26,6 @@ today: string; // variable to keep todays date
   ngOnInit(): void {
     this.route.params.subscribe(
       (params:Params)=>{
-        // this was for front end approach. Getting params by number in array
-        // this.id= params['id'];
         this.id = params['id']? params['id'] :null;
         this.editMode=params['id']!=null;
         this.initForm();
@@ -68,29 +67,28 @@ today: string; // variable to keep todays date
           })
         )
       }
-
       if (this.editMode){
-        const job = this.jobService.getJob(this.id);
-        workOrderNumber = job.workOrderNumber;
-        this.workOrderNumberForPart=job.workOrderNumber;
-        name = job.name;
-        phone = job.phone;
-        houseNumber=job.houseNumber;
-        street=job.street;
-        city=job.city;
-        zip = job.zip;
-        description = job.description;
-        jobSource= job.jobSource;
-        jobNumberAssigned= job.jobNumberAssigned;
-        jobType=job.jobType;
-        jobAuthorization = job.jobAuthorization;
-        jobCreated= job.jobCreated;
-        jobAppointmentDate = job.jobAppointmentDate;
-        jobAppointmentTime= job.jobAppointmentTime;
-        jobCompletionDate = job.jobCompletionDate;
+        this.job = this.jobService.getJobLocalStorage(this.id);
+        workOrderNumber = this.job.workOrderNumber;
+        this.workOrderNumberForPart=this.job.workOrderNumber;
+        name = this.job.name;
+        phone = this.job.phone;
+        houseNumber=this.job.houseNumber;
+        street=this.job.street;
+        city=this.job.city;
+        zip = this.job.zip;
+        description = this.job.description;
+        jobSource= this.job.jobSource;
+        jobNumberAssigned= this.job.jobNumberAssigned;
+        jobType=this.job.jobType;
+        jobAuthorization = this.job.jobAuthorization;
+        jobCreated= this.job.jobCreated;
+        jobAppointmentDate = this.job.jobAppointmentDate;
+        jobAppointmentTime= this.job.jobAppointmentTime;
+        jobCompletionDate = this.job.jobCompletionDate;
         // check if job history exist
-        if(job.jobHistory){
-          for(let history of job.jobHistory){
+        if(this.job.jobHistory){
+          for(let history of this.job.jobHistory){
             console.log('history update', history.jobStatus);
             jobHistory.push(
               new FormGroup({
@@ -102,8 +100,8 @@ today: string; // variable to keep todays date
           }
         }
         // check if images exist
-        if(job.images){
-          for(let image of job.images){
+        if(this.job.images){
+          for(let image of this.job.images){
             imagesGroup.push(
               new FormGroup({
                 'imagePath':new FormControl(image.imagePath)
@@ -112,8 +110,8 @@ today: string; // variable to keep todays date
           }
         }
         //checking if parts exist
-        if(job.parts){
-          for(let part of job.parts){
+        if(this.job.parts){
+          for(let part of this.job.parts){
             //pushing to array of workorderparts
             workOrderParts.push(
               new FormGroup({
@@ -135,8 +133,8 @@ today: string; // variable to keep todays date
           }
         }
         // checking if appliances exist
-        if(job.appliances){
-          for(let appliance of job.appliances){
+        if(this.job.appliances){
+          for(let appliance of this.job.appliances){
     //         const applianceFormArray:FormArray= <FormArray>this.workOrderForm.get('appliances');
     //             const newApplianceFromGroup =new FormGroup({
     //   'applianceName':new FormControl(null, Validators.required),

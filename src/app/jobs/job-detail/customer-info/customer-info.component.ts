@@ -18,7 +18,7 @@ newJobObject={};
 editDate:Date;
 
 // job route id
-id:number;
+id:string;
   constructor(private jobService:JobsService,private route:ActivatedRoute,) { }
 
   ngOnInit(): void {
@@ -36,6 +36,7 @@ id:number;
 
   }
   updateStatus(form:NgForm){
+    console.log('button clicked', this.id, form.value)
     this.jobService.addStatusUpdate(this.id,form.value);
     this.f.resetForm();
   }

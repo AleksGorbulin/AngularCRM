@@ -1,7 +1,5 @@
 import { EventEmitter, Injectable} from '@angular/core';
 import { Job } from './jobs.model';
-import { Part } from '../shared/part.model';
-import { Appliance } from '../shared/appliance.model';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Images } from '../shared/images.model';
@@ -78,14 +76,41 @@ private jobs:Job[]=[];
       });
     // return this.jobs.slice();
   }
-  getJob(id:string){
-    console.log('id passed ', id);
+  getJobLocalStorage(id:string){
     const job = this.jobs.find(job => job.id ===id);
-    console.log('getJob ', job);
-    // const job = this.jobs[id];
     return job;
+    // return this.http.get<Job>('http://localhost:3000/api/jobs/'+id);
   }
 
+  getJobDemo(id:string){
+    return this.http.get<Job>('http://localhost:3000/api/jobs/'+id).pipe(
+      map((jobData)=>{
+        return {
+          id : jobData['_id'],
+          workOrderNumber:jobData.workOrderNumber,
+          name: jobData.name,
+          description: jobData.description,
+          phone: jobData.phone,
+          houseNumber: jobData.houseNumber,
+          street: jobData.street,
+          city: jobData.city,
+          zip: jobData.zip,
+          jobSource: jobData.jobSource,
+          jobNumberAssigned: jobData.jobNumberAssigned,
+          jobType: jobData.jobType,
+          jobAuthorization: jobData.jobAuthorization,
+          jobCreated: jobData.jobCreated,
+          jobAppointmentDate: jobData.jobAppointmentDate,
+          jobAppointmentTime: jobData.jobAppointmentTime,
+          jobCompletionDate: jobData.jobCompletionDate,
+          images:jobData.images,
+          parts: jobData.parts,
+          appliances: jobData.appliances,
+          jobHistory: jobData.jobHistory
+        }
+      }))
+
+  }
   findJob(query:string){
     const queryString= query.toLowerCase();
     const filteredJobs:Job[]=this.jobs.filter(
@@ -101,7 +126,7 @@ private jobs:Job[]=[];
       this.searchResults.emit(filteredJobs)
   }
   addJob(job:Job){
-    this.http.post<{message:string,id:string}>('http://localhost:3000/api/jobs', job)
+    this.http.post<{message:string,id:string}>('http://localhost:3000/api/jobs/', job)
     .subscribe((responceData)=>{
       job.id= responceData.id;
       // update jobs list and view only if sucesfully added to DB
@@ -112,7 +137,6 @@ private jobs:Job[]=[];
 
   }
   updateJob(jobId:string,newJob:Job){
-    console.log('SERVICe newJOB = ', newJob);
     this.http.put('http://localhost:3000/api/jobs/'+jobId, newJob)
       .subscribe(response =>{
         const updatedJobs = [...this.jobs];
@@ -128,13 +152,25 @@ private jobs:Job[]=[];
   // delete Part
   deletePart(index:number){
   }
-  addStatusUpdate(index:number, jobHistory:JobHistory){
-    this.jobs[index].jobHistory.unshift(jobHistory);
-    this.jobsUpdated.next(this.jobs.slice());
+  addStatusUpdate(jobId:string, jobHistory:JobHistory){
+    // add timeStamp to jobHistory array of objects
+    jobHistory['updateDate'] = this.getTimeStamp();
+    this.http.put('http://localhost:3000/api/jobs/'+jobId, jobHistory)
+    .subscribe(
+      response=>{
+        const updatedJobs = [...this.jobs];
+        const oldJobIndex = updatedJobs.findIndex(({id})=>id===jobId);
+        updatedJobs[oldJobIndex].jobHistory.unshift(jobHistory);
+        this.jobs= updatedJobs;
+        // updating list of all jobs
+        this.jobsUpdated.next([...this.jobs]);
+        // updating currently open/updated job
+        this.jobUpdated.next(updatedJobs[oldJobIndex]);
+      }
+    )
   }
   // add images
   addImages(index, imageUrl){
-    console.log('imageURl ', imageUrl);
     this.jobs[index].images.unshift(new Images(imageUrl));
   }
 
@@ -148,13 +184,29 @@ private jobs:Job[]=[];
     deleteJob(jobId:string){
       this.http.delete('http://localhost:3000/api/jobs/'+jobId)
         .subscribe(()=>{
-          console.log('jobs before filter ', this.jobs);
           const updatedJobs = this.jobs.filter(job =>job.id!==jobId)
-          console.log('updatedJobs ', updatedJobs);
           this.jobs=updatedJobs;
           this.jobsUpdated.next(this.jobs);
         })
         // navigate one level up
         this.router.navigate(['../'],{relativeTo:this.route});
+    }
+    getTimeStamp(){
+      let date_ob = new Date();
+      // current date
+      // adjust 0 before single digit date
+      let date = ("0" + date_ob.getDate()).slice(-2);
+      // current month
+      let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+      // current year
+      let year = date_ob.getFullYear();
+      // current hours
+      let hours = date_ob.getHours();
+      // current minutes
+      let minutes = date_ob.getMinutes();
+      // current seconds
+      let seconds = date_ob.getSeconds();
+      // prints date in YYYY-MM-DD format 
+      return year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds;
     }
 }

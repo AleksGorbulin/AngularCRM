@@ -27,7 +27,7 @@
 <div
   class="row"
   *ngIf="loadedTab=='picture'" >
-  <app-images-detail
+  <app-images-detail 
   [images]="job.images"
   [id]="id"></app-images-detail>
   </div>
@@ -43,25 +43,25 @@
      </ul>
     </div>
   </div>
-        <!-- CUSTOMER INFO -->
+<!-- CUSTOMER INFO -->
         <div  *ngIf="loadedTab == 'info'">
           <app-customer-info [currentJob]="job"></app-customer-info>
         </div>
-        <!-- END CUSTOMER INFO -->
-                  <!-- APPLIANCES -->
-                  <div *ngIf="loadedTab=='appliances'">
-                    <app-appliance-detail
-                     [appliances]="job.appliances"
-                     [jobId]="job.workOrderNumber"></app-appliance-detail>
-                  </div>
-                  <!-- END APPLIANCES -->
-                  <!-- BEGINNING FINANCE -->
-        <div *ngIf="loadedTab=='finance'">
-        <app-job-finance
-        [appliances]='job.appliances'
-        [parts]='job.parts'
-        ></app-job-finance>
+<!-- END CUSTOMER INFO -->
+<!-- APPLIANCES -->
+        <div *ngIf="loadedTab=='appliances'">
+            <app-appliance-detail
+            [appliances]="job?.appliances"
+            [jobId]="job?.workOrderNumber"></app-appliance-detail>
         </div>
-                  <!-- END FINANCE -->
+<!-- END APPLIANCES -->
+<!-- BEGINNING FINANCE -->
+                      <div *ngIf="loadedTab=='finance'">
+                      <app-job-finance
+                      [appliances]='job?.appliances'
+                      [parts]='job?.parts'
+                      ></app-job-finance>
+                      </div>
+ <!-- END FINANCE -->
 
 
